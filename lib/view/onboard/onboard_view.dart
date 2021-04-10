@@ -53,6 +53,7 @@ class OnBoardView extends StatelessWidget {
     });
   }
 
+// comment
   PageView buildPageView(OnBoardViewModel viewModel) {
     return PageView.builder(
         controller: _pageController,
