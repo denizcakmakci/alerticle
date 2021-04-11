@@ -18,17 +18,9 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   @observable
   int currentIndex = 0;
 
-  @observable
-  int isLastPage = 0;
-
   @action
   void changeCurrentIndex(int value) {
     currentIndex = value;
-  }
-
-  @action
-  void changePage() {
-    isLastPage++;
   }
 
   @override
@@ -44,7 +36,6 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   }
 
   Future<void> completeToOnBoard() async {
-    changePage();
     await localeManager.setBoolValue(PreferencesKeys.IS_FIRST_APP, true);
     //await navigation.navigateToPageClear(path: NavigationConstants.TEST);
   }

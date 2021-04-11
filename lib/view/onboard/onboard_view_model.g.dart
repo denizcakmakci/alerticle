@@ -24,21 +24,6 @@ mixin _$OnBoardViewModel on _OnBoardViewModelBase, Store {
     });
   }
 
-  final _$isLastPageAtom = Atom(name: '_OnBoardViewModelBase.isLastPage');
-
-  @override
-  int get isLastPage {
-    _$isLastPageAtom.reportRead();
-    return super.isLastPage;
-  }
-
-  @override
-  set isLastPage(int value) {
-    _$isLastPageAtom.reportWrite(value, super.isLastPage, () {
-      super.isLastPage = value;
-    });
-  }
-
   final _$_OnBoardViewModelBaseActionController =
       ActionController(name: '_OnBoardViewModelBase');
 
@@ -54,21 +39,9 @@ mixin _$OnBoardViewModel on _OnBoardViewModelBase, Store {
   }
 
   @override
-  void changePage() {
-    final _$actionInfo = _$_OnBoardViewModelBaseActionController.startAction(
-        name: '_OnBoardViewModelBase.changePage');
-    try {
-      return super.changePage();
-    } finally {
-      _$_OnBoardViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-currentIndex: ${currentIndex},
-isLastPage: ${isLastPage}
+currentIndex: ${currentIndex}
     ''';
   }
 }
