@@ -9,9 +9,10 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.deepPurple,
-        appBar: AppBar(
-          title: Text('Test'),
-        ));
+      backgroundColor: Colors.deepPurple,
+      appBar: AppBar(
+        title: Text('Test'),
+      ),
+    );
   }
 }

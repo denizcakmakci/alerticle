@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:mobx/mobx.dart';
-import 'package:tasarim_proje/core/base/base_view.dart';
-import 'package:tasarim_proje/core/init/lang/locale_keys.g.dart';
-import 'package:tasarim_proje/core/widgets/locale_text.dart';
-//import 'package:tasarim_proje/view/constants/image_path_svg.dart';
-import 'package:tasarim_proje/view/onboard/onboard_model.dart';
-import 'package:tasarim_proje/view/onboard/onboard_view_model.dart';
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
-import 'package:tasarim_proje/view/widgets/on_board_circle.dart';
+
+import '../../core/base/base_view.dart';
+import '../../core/init/extensions/context_extension.dart';
+import '../../core/init/lang/locale_keys.g.dart';
+import '../../core/services/google_signin.dart';
+import '../../core/widgets/locale_text.dart';
+import '../widgets/on_board_circle.dart';
+import 'onboard_model.dart';
+import 'onboard_view_model.dart';
 
 class OnBoardView extends StatelessWidget {
   final PageController _pageController = PageController(initialPage: 0);
@@ -23,20 +23,22 @@ class OnBoardView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, OnBoardViewModel viewModel) =>
           Scaffold(
-        body: Column(
-          children: [
-            SizedBox(
-              height: 80,
-            ),
-            Expanded(flex: 5, child: buildPageView(viewModel)),
-            Expanded(
-                flex: 1,
-                child: Container(
-                    padding: context.paddingMedium,
-                    alignment: Alignment.topLeft,
-                    child: buildListViewCircles(viewModel))),
-            bottomButtons(context, viewModel)
-          ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Expanded(flex: 5, child: buildPageView(viewModel)),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: context.paddingMediumHorizontal,
+                      alignment: Alignment.topLeft,
+                      child: buildListViewCircles(viewModel))),
+              Expanded(flex: 1, child: bottomButtons(context, viewModel))
+            ],
+          ),
         ),
       ),
     );
@@ -119,16 +121,15 @@ class OnBoardView extends StatelessWidget {
 
   Widget bottomButtons(BuildContext context, OnBoardViewModel viewModel) {
     return Observer(builder: (_) {
-      return Expanded(
-          child: viewModel.currentIndex == viewModel.onBoardItems.length - 1
-              ? Container(
-                  alignment: Alignment.center,
-                  padding: context.paddingMedium,
-                  child: buildGoogleSign(viewModel, context))
-              : Container(
-                  padding: context.paddingMedium,
-                  alignment: Alignment.topRight,
-                  child: buildTextButtonSkip(context, viewModel)));
+      return viewModel.currentIndex == viewModel.onBoardItems.length - 1
+          ? Container(
+              alignment: Alignment.center,
+              padding: context.paddingMediumHorizontal,
+              child: buildGoogleSign(viewModel, context))
+          : Container(
+              padding: context.paddingMedium, //bozulma
+              alignment: Alignment.bottomRight,
+              child: buildTextButtonSkip(context, viewModel));
     });
   }
 
@@ -149,7 +150,6 @@ class OnBoardView extends StatelessWidget {
           duration: Duration(milliseconds: 500),
           curve: Curves.ease,
         );
-        viewModel.completeToOnBoard();
       },
     );
   }
@@ -164,67 +164,84 @@ class OnBoardView extends StatelessWidget {
             .copyWith(color: context.colors.secondary, fontSize: 20));
   }
 
+  InkWell buildGoogleSign(OnBoardViewModel viewModel, BuildContext context) {
+    return InkWell(
+      child: Container(
+        height: 50,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: context.colors.secondary,
+            borderRadius: BorderRadius.circular(25.0)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+                width: 35,
+                height: 35,
+                child: SvgPicture.asset('assets/svg/google.svg')),
+            SizedBox(width: 20),
+            LocaleText(
+                value: LocaleKeys.onBoard_googleDesc,
+                textAlign: TextAlign.left,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(color: context.colors.primary, fontSize: 20)),
+          ],
+        ),
+      ),
+      onTap: () async {
+        var data = await GoogleSignHelper.instance.signIn();
+        if (data != null) {
+          var userData = await GoogleSignHelper.instance.signInWithGoogle();
+          print(userData);
+          viewModel.navigateToListPage();
+          viewModel.completeToOnBoard();
+        }
+      },
+    );
+  }
+
   // InkWell buildGoogleSign(OnBoardViewModel viewModel, BuildContext context) {
   //   return InkWell(
-  //     child: Container(
-  //       padding: EdgeInsets.all(10),
-  //       decoration: BoxDecoration(
-  //           color: context.colors.secondary,
-  //           borderRadius: BorderRadius.circular(25.0)),
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //         children: <Widget>[
-  //           Container(
+  //     child: Stack(
+  //       children: [
+  //         Container(
+  //             height: 50,
+  //             decoration: BoxDecoration(
+  //                 color: context.colors.secondary,
+  //                 borderRadius: BorderRadius.circular(25.0))),
+  //         Positioned(
+  //           left: 60,
+  //           top: 6,
+  //           child: Container(
   //               width: 35,
   //               height: 35,
   //               child: SvgPicture.asset('assets/svg/google.svg')),
-  //           LocaleText(
+  //         ),
+  //         Positioned(
+  //           top: 13,
+  //           right: 70,
+  //           child: LocaleText(
   //               value: LocaleKeys.onBoard_googleDesc,
   //               textAlign: TextAlign.right,
   //               style: Theme.of(context)
   //                   .textTheme
   //                   .bodyText1
-  //                   .copyWith(color: context.colors.primary, fontSize: 20)),
-  //         ],
-  //       ),
+  //                   .copyWith(color: Color(0xffbababa), fontSize: 20)),
+  //         ),
+  //       ],
   //     ),
-  //     onTap: () {},
+  //     onTap: () async {
+  //       var data = await GoogleSignHelper.instance.signIn();
+  //       if (data != null) {
+  //         var userData = await GoogleSignHelper.instance.signInWithGoogle();
+  //         print(userData);
+  //         viewModel.navigateToListPage();
+  //       }
+  //     },
   //   );
   // }
-
-  InkWell buildGoogleSign(OnBoardViewModel viewModel, BuildContext context) {
-    return InkWell(
-      child: Stack(
-        children: [
-          Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: context.colors.secondary,
-                  borderRadius: BorderRadius.circular(25.0))),
-          Positioned(
-            left: 60,
-            top: 6,
-            child: Container(
-                width: 35,
-                height: 35,
-                child: SvgPicture.asset('assets/svg/google.svg')),
-          ),
-          Positioned(
-            top: 12,
-            right: 70,
-            child: LocaleText(
-                value: LocaleKeys.onBoard_googleDesc,
-                textAlign: TextAlign.right,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    .copyWith(color: context.colors.primary, fontSize: 20)),
-          ),
-        ],
-      ),
-      onTap: () {},
-    );
-  }
 
   SvgPicture buildSvgPicture(String path) => SvgPicture.asset(path);
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/base/base_view.dart';
-import 'package:tasarim_proje/view/splash_screen/splash_view_model.dart';
+import '../../core/base/base_view.dart';
+import 'splash_view_model.dart';
 
 class SplashView extends StatelessWidget {
   @override

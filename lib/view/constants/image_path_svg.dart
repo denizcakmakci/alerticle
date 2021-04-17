@@ -1,4 +1,4 @@
-import 'package:tasarim_proje/core/init/extensions/extensions.dart';
+import '../../core/init/extensions/extensions.dart';
 
 class SVGImagePaths {
   static SVGImagePaths _instace;
