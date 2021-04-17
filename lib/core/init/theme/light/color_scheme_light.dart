@@ -11,7 +11,7 @@ class ColorSchemeLight {
 
   final Color white = Color(0xffffffff);
   final Color lightGray = Color(0xffc4c4c4);
-  final Color darkGray = Color(0xff676870);
+  final Color darkGray = Color(0xffbababa);
   final Color green = Color(0xff2ecc71);
   final Color black = Color(0xff020306);
   final Color red = Color(0xffe84545);

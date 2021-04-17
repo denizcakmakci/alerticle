@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:tasarim_proje/core/base/base_view_model.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
+
+import '../../core/base/base_view_model.dart';
+import '../../core/device/constants.dart';
+
 part 'splash_view_model.g.dart';
 
 class SplashViewModel = _SplashViewModelBase with _$SplashViewModel;
@@ -16,7 +18,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
       if (localeManager.getBoolValue(PreferencesKeys.IS_FIRST_APP) == false) {
         navigation.navigateToPageClear(path: NavigationConstants.ONBOARD);
       } else {
-        navigation.navigateToPageClear(path: NavigationConstants.TEST);
+        navigation.navigateToPageClear(path: NavigationConstants.HOME);
       }
     });
   }

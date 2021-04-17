@@ -16,5 +16,13 @@ abstract class  LocaleKeys {
   static const onBoard_Skip = 'onBoard.Skip';
   static const onBoard_googleDesc = 'onBoard.googleDesc';
   static const onBoard = 'onBoard';
+  static const profile_apptitle = 'profile.apptitle';
+  static const profile = 'profile';
+  static const myList_appBarTitle = 'myList.appBarTitle';
+  static const myList = 'myList';
+  static const bottomNavBar_mylist = 'bottomNavBar.mylist';
+  static const bottomNavBar_timing = 'bottomNavBar.timing';
+  static const bottomNavBar_profile = 'bottomNavBar.profile';
+  static const bottomNavBar = 'bottomNavBar';
 
 }

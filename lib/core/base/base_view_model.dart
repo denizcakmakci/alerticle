@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/init/cache/locale_manager.dart';
-import 'package:tasarim_proje/core/init/navigation/navigation_service.dart';
+
+import '../init/cache/locale_manager.dart';
+import '../init/navigation/navigation_service.dart';
 
 abstract class BaseViewModel {
   BuildContext context;

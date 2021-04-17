@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
+import '../../device/constants.dart';
 import 'app_theme.dart';
 import 'light/light_theme_interface.dart';
 
@@ -16,12 +16,6 @@ class AppThemeLight extends AppTheme with ILightTheme {
         fontFamily: AppConstant.FONT_FAMILY,
         colorScheme: _appColorScheme,
         textTheme: textTheme(),
-        appBarTheme: ThemeData.light().appBarTheme.copyWith(
-            brightness: Brightness.light,
-            color: Colors.transparent,
-            titleTextStyle: textThemeLight.headline1,
-            elevation: 0,
-            iconTheme: IconThemeData(color: Colors.transparent, size: 24)),
         inputDecorationTheme: InputDecorationTheme(
             focusColor: Colors.black12,
             labelStyle: TextStyle(),
@@ -32,9 +26,14 @@ class AppThemeLight extends AppTheme with ILightTheme {
                 OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
             // border: OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
             focusedBorder: OutlineInputBorder()),
+        iconTheme: IconThemeData(
+          color: colorSchemeLight.lightGray,
+          size: 24,
+        ),
         scaffoldBackgroundColor: _appColorScheme.background,
-        floatingActionButtonTheme:
-            ThemeData.light().floatingActionButtonTheme.copyWith(),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.transparent,
+        ),
         buttonTheme: ThemeData.light().buttonTheme.copyWith(
               colorScheme: ColorScheme.light(
                 onError: Color(0xffFF2D55),
@@ -44,7 +43,9 @@ class AppThemeLight extends AppTheme with ILightTheme {
 
   TextTheme textTheme() {
     return ThemeData.light().textTheme.copyWith(
-        headline1: textThemeLight.headline1, bodyText1: textThemeLight.text1);
+          headline1: textThemeLight.headline1,
+          bodyText1: textThemeLight.text1,
+        );
   }
 
   ColorScheme get _appColorScheme {
@@ -53,7 +54,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
         primaryVariant: Colors.black,
         secondary: colorSchemeLight.white,
         secondaryVariant: colorSchemeLight.black,
-        surface: Colors.blue,
+        surface: colorSchemeLight.bottomSheetBg,
         background: colorSchemeLight.bg,
         error: colorSchemeLight.red,
         onPrimary: colorSchemeLight.defaultCard,

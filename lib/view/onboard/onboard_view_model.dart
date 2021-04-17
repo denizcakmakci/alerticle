@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:tasarim_proje/core/base/base_view_model.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
-import 'package:tasarim_proje/core/init/lang/locale_keys.g.dart';
-import 'package:tasarim_proje/view/constants/image_path_svg.dart';
-import 'package:tasarim_proje/view/onboard/onboard_model.dart';
+
+import '../../core/base/base_view_model.dart';
+import '../../core/device/constants.dart';
+import '../../core/init/lang/locale_keys.g.dart';
+import '../../core/init/navigation/navigation_service.dart';
+import '../constants/image_path_svg.dart';
+import 'onboard_model.dart';
 
 part 'onboard_view_model.g.dart';
 
@@ -35,8 +37,11 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
         LocaleKeys.onBoard_page4_desc, SVGImagePaths.instance.videoSVG));
   }
 
+  void navigateToListPage() {
+    NavigationService.instance.navigateToPage(path: NavigationConstants.HOME);
+  }
+
   Future<void> completeToOnBoard() async {
     await localeManager.setBoolValue(PreferencesKeys.IS_FIRST_APP, true);
-    //await navigation.navigateToPageClear(path: NavigationConstants.TEST);
   }
 }

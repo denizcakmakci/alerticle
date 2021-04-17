@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
-import 'package:tasarim_proje/view/onboard/onboard_view.dart';
-import 'package:tasarim_proje/view/splash_screen/splash_view.dart';
-import 'package:tasarim_proje/view/test/test.dart';
+
+import '../../../view/bottom_navigation.dart';
+import '../../../view/myList/mylist_view.dart';
+import '../../../view/onboard/onboard_view.dart';
+import '../../../view/profile/profile_view.dart';
+import '../../../view/splash_screen/splash_view.dart';
+import '../../../view/test/test.dart';
+import '../../device/constants.dart';
 
 class NavigationRoute {
   static NavigationRoute _instace;
@@ -22,6 +26,12 @@ class NavigationRoute {
         return normalNavigate(OnBoardView());
       case NavigationConstants.SPLASH:
         return normalNavigate(SplashView());
+      case NavigationConstants.PROFILE:
+        return normalNavigate(ProfileView());
+      case NavigationConstants.MYLIST:
+        return normalNavigate(MyListView());
+      case NavigationConstants.HOME:
+        return normalNavigate(BottomNavigation());
 
       default:
         return MaterialPageRoute(

@@ -11,11 +11,13 @@ class AppConstant {
   static const FONT_FAMILY = 'NUNITO';
 }
 
-enum PreferencesKeys { IS_FIRST_APP } // shared_preferences
+enum PreferencesKeys { IS_FIRST_APP, TOKEN } // shared_preferences
 
 class NavigationConstants {
-  static const String HOME = "/home";
+  static const String HOME = "/bottom_navigation";
   static const String ONBOARD = "/onboard";
   static const String TEST = "/test";
   static const String SPLASH = "/splash_screen";
+  static const String PROFILE = "/profile";
+  static const String MYLIST = "/myList";
 }

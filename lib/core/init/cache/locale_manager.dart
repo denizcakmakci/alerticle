@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
+
+import '../../device/constants.dart';
 
 class LocaleManager {
   static final LocaleManager _instance = LocaleManager._init();
