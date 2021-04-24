@@ -19,6 +19,13 @@ abstract class  LocaleKeys {
   static const profile_apptitle = 'profile.apptitle';
   static const profile = 'profile';
   static const myList_appBarTitle = 'myList.appBarTitle';
+  static const myList_bottomsheet_listen = 'myList.bottomsheet.listen';
+  static const myList_bottomsheet_read = 'myList.bottomsheet.read';
+  static const myList_bottomsheet_watch = 'myList.bottomsheet.watch';
+  static const myList_bottomsheet_title = 'myList.bottomsheet.title';
+  static const myList_bottomsheet_url = 'myList.bottomsheet.url';
+  static const myList_bottomsheet_button = 'myList.bottomsheet.button';
+  static const myList_bottomsheet = 'myList.bottomsheet';
   static const myList = 'myList';
   static const bottomNavBar_mylist = 'bottomNavBar.mylist';
   static const bottomNavBar_timing = 'bottomNavBar.timing';

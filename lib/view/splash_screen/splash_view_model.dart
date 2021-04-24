@@ -14,7 +14,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    Future.delayed(const Duration(seconds: 3), () async {
+    Future.delayed(const Duration(seconds: 1), () async {
       if (localeManager.getBoolValue(PreferencesKeys.IS_FIRST_APP) == false) {
         navigation.navigateToPageClear(path: NavigationConstants.ONBOARD);
       } else {
