@@ -15,7 +15,9 @@
         "apptitle": "PROFİL"
     },
     "myList" : {
-        "appBarTitle" : "LİSTEM"
+        "appBarTitle" : "LİSTEM",
+        "bottomsheet":
+        {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE"}
     },
     "bottomNavBar" : {
         "mylist" : "Listem",

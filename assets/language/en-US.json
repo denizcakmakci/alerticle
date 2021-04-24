@@ -15,11 +15,14 @@
         "apptitle": "PROFILE"
     },
     "myList" : {
-        "appBarTitle" : "MY LIST"
+        "appBarTitle" : "MY LIST",
+        "bottomsheet":
+        {"listen": "Listen", "read": "Read", "watch": "Watch", "title": "Enter title", "url": "Enter url", "button": "ADD"}
     },
     "bottomNavBar" : {
         "mylist" : "My List",
         "timing" : "Timing",
         "profile" : "Profile"
     }
+
 }
