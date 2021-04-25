@@ -1,15 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
-import 'package:tasarim_proje/view/widgets/buttton.dart';
+import 'package:tasarim_proje/view/widgets/card.dart';
+import '../widgets/buttton.dart';
 
 import '../../core/base/base_view.dart';
 import '../../core/init/lang/locale_keys.g.dart';
 import '../../core/widgets/locale_text.dart';
 import '../widgets/base_app_bar.dart';
 import 'mylist_view_model.dart';
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
-import 'package:tasarim_proje/core/init/extensions/extensions.dart';
+import '../../core/init/extensions/context_extension.dart';
+import '../../core/init/extensions/extensions.dart';
 
 class MyListView extends StatelessWidget {
   @override
@@ -36,9 +38,47 @@ class MyListView extends StatelessWidget {
                 })
           ],
         ),
+        body: listData(context, viewModel),
       ),
     );
   }
+
+  StreamBuilder listData(BuildContext context, MyListViewModel viewModel) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: viewModel.statusService.getStatus(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            var document = snapshot.data.data();
+            var doc = document['list'];
+            return ListView.builder(
+              itemCount: doc != null ? doc.length : 0,
+              itemBuilder: (_, int index) {
+                return BaseCard(
+                  icon: viewModel.iconSelect(doc[index]['type']),
+                  title: new Text(
+                    doc[index]['title'] ?? 'null',
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                        fontWeight: FontWeight.w900,
+                        color: context.colors.primaryVariant,
+                        fontSize: 16),
+                  ),
+                  subtitle: new Text(
+                    doc[index]['url'] ?? 'null',
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                        color: context.colors.primaryVariant, fontSize: 14),
+                  ),
+                );
+              },
+              padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        });
+  }
+
+  //----------------------BOTTOMSHEET------------------------------------
 
   void _buildModalBottomSheet(BuildContext context, MyListViewModel viewModel) {
     showModalBottomSheet(
