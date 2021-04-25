@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobx/mobx.dart';
-import 'package:tasarim_proje/core/services/firestore/status_service.dart';
+import 'package:tasarim_proje/core/init/lang/locale_keys.g.dart';
+import '../../core/services/firestore/status_service.dart';
 //import 'package:tasarim_proje/core/device/constants.dart';
 //import 'package:tasarim_proje/core/init/navigation/navigation_service.dart';
+import 'package:tasarim_proje/core/init/extensions/extensions.dart';
+import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
 
 import '../../core/base/base_view_model.dart';
 
@@ -23,6 +27,25 @@ abstract class _MyListViewModelBase with Store, BaseViewModel {
     Navigator.pop(context);
     urlController.clear();
     statusController.clear();
+  }
+
+  Icon iconSelect(String docs) {
+    if (docs == LocaleKeys.myList_bottomsheet_listen.locale) {
+      return Icon(
+        FontAwesomeIcons.headphones,
+        color: context.colors.primaryVariant,
+      );
+    } else if (docs == LocaleKeys.myList_bottomsheet_read.locale) {
+      return Icon(
+        FontAwesomeIcons.book,
+        color: context.colors.primaryVariant,
+      );
+    } else {
+      return Icon(
+        FontAwesomeIcons.tv,
+        color: context.colors.primaryVariant,
+      );
+    }
   }
 
   @observable

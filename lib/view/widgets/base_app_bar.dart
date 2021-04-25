@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/widgets/locale_text.dart';
+
 import '../../core/init/theme/app_theme_light.dart';
+import '../../core/widgets/locale_text.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor = Colors.transparent;

@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../device/constants.dart';
 import '../init/cache/locale_manager.dart';
+import 'package:tasarim_proje/core/services/firestore/status_service.dart';
 
 class GoogleSignHelper {
   static GoogleSignHelper _instance = GoogleSignHelper._private();
@@ -51,9 +52,16 @@ class GoogleSignHelper {
     );
 
     final user = (await _auth.signInWithCredential(credential)).user;
-    var tokenResult = await user.getIdToken();
+    //var tokenResult = await user.getIdToken();
     await LocaleManager.instance
-        .setStringValue(PreferencesKeys.TOKEN, tokenResult);
+        .setStringValue(PreferencesKeys.TOKEN, user.uid);
+    //print(user.uid);
+    var service = new StatusService();
+    bool isDocExists = await service.isDocExists();
+    if (!isDocExists) {
+      service.addEmptyDoc();
+    }
+
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
