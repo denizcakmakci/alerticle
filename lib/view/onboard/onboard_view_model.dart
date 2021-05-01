@@ -38,7 +38,8 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   }
 
   void navigateToListPage() {
-    NavigationService.instance.navigateToPage(path: NavigationConstants.HOME);
+    NavigationService.instance
+        .navigateToPageClear(path: NavigationConstants.HOME);
   }
 
   Future<void> completeToOnBoard() async {

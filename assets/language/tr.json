@@ -17,7 +17,11 @@
     "myList" : {
         "appBarTitle" : "LİSTEM",
         "bottomsheet":
-        {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE"}
+        {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE"},
+        "alertDelete":
+        {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz ?", "delete": "Sil", "Cancel": "İptal"},
+        "alertAdd":
+        {"title": "Giriş alanları boş olmamalıdır", "Ok": "Anladım"}
     },
     "bottomNavBar" : {
         "mylist" : "Listem",

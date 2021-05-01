@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
-import 'package:tasarim_proje/view/widgets/card.dart';
+import '../widgets/card.dart';
 import '../widgets/buttton.dart';
 
 import '../../core/base/base_view.dart';
@@ -54,19 +54,24 @@ class MyListView extends StatelessWidget {
             return ListView.builder(
               itemCount: doc != null ? doc.length : 0,
               itemBuilder: (_, int index) {
-                return BaseCard(
-                  icon: viewModel.iconSelect(doc[index]['type']),
-                  title: new Text(
-                    doc[index]['title'] ?? 'null',
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                        fontWeight: FontWeight.w900,
-                        color: context.colors.primaryVariant,
-                        fontSize: 16),
-                  ),
-                  subtitle: new Text(
-                    doc[index]['url'] ?? 'null',
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                        color: context.colors.primaryVariant, fontSize: 14),
+                return Container(
+                  margin: EdgeInsets.only(bottom: 25),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Dismissible(
+                      key: ValueKey(index),
+                      background: slideBackground(context),
+                      direction: DismissDirection.endToStart,
+                      dismissThresholds: const {
+                        DismissDirection.endToStart: 0.2,
+                        DismissDirection.startToEnd: 0.2,
+                      },
+                      confirmDismiss: (direction) async {
+                        return await alertDelete(
+                            context, viewModel, doc, index);
+                      },
+                      child: buildbaseCard(viewModel, doc, index, context),
+                    ),
                   ),
                 );
               },
@@ -78,7 +83,69 @@ class MyListView extends StatelessWidget {
         });
   }
 
-  //----------------------BOTTOMSHEET------------------------------------
+  Future<bool> alertDelete(
+      BuildContext context, MyListViewModel viewModel, doc, int index) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(LocaleKeys.myList_alertDelete_title.locale),
+          content: Text(LocaleKeys.myList_alertDelete_subtitle.locale),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(LocaleKeys.myList_alertDelete_Cancel.locale)),
+            TextButton(
+              onPressed: () {
+                viewModel.statusService.removeStatus(doc[index]);
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                LocaleKeys.myList_alertDelete_delete.locale,
+                style: TextStyle(color: context.colors.error),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  BaseCard buildbaseCard(
+      MyListViewModel viewModel, doc, int index, BuildContext context) {
+    return BaseCard(
+      icon: viewModel.iconSelect(doc[index]['type']),
+      title: new Text(
+        doc[index]['title'] ?? 'null',
+        style: Theme.of(context).textTheme.headline1.copyWith(
+            fontWeight: FontWeight.w900,
+            color: context.colors.primaryVariant,
+            fontSize: 16),
+      ),
+      subtitle: new Text(
+        doc[index]['url'] ?? 'null',
+        style: Theme.of(context)
+            .textTheme
+            .headline1
+            .copyWith(color: context.colors.primaryVariant, fontSize: 14),
+      ),
+    );
+  }
+
+  Widget slideBackground(BuildContext context) {
+    return Container(
+      alignment: AlignmentDirectional.centerEnd,
+      color: context.colors.error,
+      child: Padding(
+        padding: EdgeInsets.only(right: 25),
+        child: Icon(FontAwesomeIcons.trashAlt),
+      ),
+    );
+  }
+
+  //--------------BOTTOMSHEET-----------------------
 
   void _buildModalBottomSheet(BuildContext context, MyListViewModel viewModel) {
     showModalBottomSheet(
@@ -100,25 +167,43 @@ class MyListView extends StatelessWidget {
                   child: customRadioButton(context, viewModel),
                 ),
                 Expanded(
-                  child: Container(
-                      margin: EdgeInsets.fromLTRB(40, 40, 40, 5),
-                      child: textFieldTitle(viewModel, context)),
-                ),
+                    child: Container(
+                        margin: EdgeInsets.fromLTRB(40, 40, 40, 5),
+                        child: textFieldTitle(viewModel, context))),
                 Expanded(
-                  child: Container(
-                      margin: EdgeInsets.fromLTRB(40, 5, 40, 0),
-                      child: textFieldUrl(viewModel, context)),
-                ),
+                    child: Container(
+                        margin: EdgeInsets.fromLTRB(40, 5, 40, 0),
+                        child: textFieldUrl(viewModel, context))),
                 AppButton(
                     width: 80,
                     height: 50,
                     padding: context.paddingMedium,
                     text: LocaleKeys.myList_bottomsheet_button,
                     ontap: () {
-                      viewModel.addFire();
-                    }),
+                      viewModel.checkTextEmpty()
+                          ? viewModel.addFire()
+                          : alertAdd(context);
+                    })
               ],
             ),
+          );
+        });
+  }
+
+  alertAdd(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text(LocaleKeys.myList_alertAdd_title.locale),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(LocaleKeys.myList_alertAdd_Ok.locale),
+              )
+            ],
           );
         });
   }
@@ -193,15 +278,15 @@ class MyListView extends StatelessWidget {
         LocaleKeys.myList_bottomsheet_watch.locale,
       ],
       buttonValues: [
-        LocaleKeys.myList_bottomsheet_listen.locale,
-        LocaleKeys.myList_bottomsheet_read.locale,
-        LocaleKeys.myList_bottomsheet_watch.locale,
+        "Listen",
+        "Read",
+        "Watch",
       ],
       radioButtonValue: (value) {
-        print(value);
         viewModel.value = value;
       },
       selectedColor: context.colors.onSecondary,
+      defaultSelected: "Listen",
     );
   }
 }

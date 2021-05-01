@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../device/constants.dart';
 import 'app_theme.dart';
 import 'light/light_theme_interface.dart';
@@ -16,6 +17,16 @@ class AppThemeLight extends AppTheme with ILightTheme {
         fontFamily: AppConstant.FONT_FAMILY,
         colorScheme: _appColorScheme,
         textTheme: textTheme(),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        dialogTheme: DialogTheme(
+            backgroundColor: _appColorScheme.surface,
+            contentTextStyle:
+                TextStyle(color: _appColorScheme.primary, fontSize: 16),
+            titleTextStyle:
+                TextStyle(color: _appColorScheme.primary, fontSize: 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            )),
         inputDecorationTheme: InputDecorationTheme(
             focusColor: Colors.black12,
             labelStyle: TextStyle(),

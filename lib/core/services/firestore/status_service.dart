@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tasarim_proje/core/device/constants.dart';
-import 'package:tasarim_proje/core/init/cache/locale_manager.dart';
-import 'package:tasarim_proje/core/services/firestore/status.dart';
+import '../../device/constants.dart';
+import '../../init/cache/locale_manager.dart';
 
 class StatusService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -27,7 +26,6 @@ class StatusService {
     return documentRef;
   }
 
-  //status göstermek için
   Stream<DocumentSnapshot> getStatus() {
     var ref = _firestore.collection("Users").doc(user).snapshots();
 
@@ -52,9 +50,14 @@ class StatusService {
     }
   }
 
-  //status silmek için
-  Future<void> removeStatus(String docId) {
-    var ref = _firestore.collection("Users").doc(docId).delete();
+  Future<void> removeStatus(var docId) {
+    var ref = _firestore.collection("Users").doc(user).update({
+      "list": FieldValue.arrayRemove([docId])
+    }).then((value) {
+      print("delete");
+    }).catchError((error) {
+      print(error);
+    });
     return ref;
   }
 }
