@@ -3,7 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../device/constants.dart';
 import '../init/cache/locale_manager.dart';
-import 'package:tasarim_proje/core/services/firestore/status_service.dart';
+import 'firestore/status_service.dart';
 
 class GoogleSignHelper {
   static GoogleSignHelper _instance = GoogleSignHelper._private();

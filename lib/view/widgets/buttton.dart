@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../../core/init/extensions/context_extension.dart';
 import '../../core/init/theme/app_theme_light.dart';
 import '../../core/widgets/locale_text.dart';
-import '../../core/init/extensions/context_extension.dart';
 
 class AppButton extends StatelessWidget {
   final double width;

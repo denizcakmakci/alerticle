@@ -129,25 +129,43 @@ class OnBoardView extends StatelessWidget {
           : Container(
               padding: context.paddingMedium, //bozulma
               alignment: Alignment.bottomRight,
-              child: buildTextButtonSkip(context, viewModel));
+              child: buildButtonSkip(context, viewModel));
     });
   }
 
-  TextButton buildTextButtonSkip(
-      BuildContext context, OnBoardViewModel viewModel) {
-    return TextButton(
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all<Color>(context.colors.onSecondary),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0))),
-      ),
+  // Widget buildTextButtonSkip(
+  //     BuildContext context, OnBoardViewModel viewModel) {
+  //   return TextButton(
+  //     style: ButtonStyle(
+  //       backgroundColor:
+  //           MaterialStateProperty.all<Color>(context.colors.onSecondary),
+  //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0))),
+  //     ),
+  //     child: Container(
+  //         margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+  //         child: buildLocaleSkipText(context)),
+  //     onPressed: () {
+  //       _pageController.nextPage(
+  //         duration: Duration(milliseconds: 500),
+  //         curve: Curves.ease,
+  //       );
+  //     },
+  //   );
+  // }
+
+  Widget buildButtonSkip(BuildContext context, OnBoardViewModel viewModel) {
+    return InkWell(
       child: Container(
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-          child: buildLocaleSkipText(context)),
-      onPressed: () {
+        width: 75,
+        decoration: BoxDecoration(
+            color: context.colors.onSecondary,
+            borderRadius: BorderRadius.circular(25)),
+        child: Center(child: buildLocaleSkipText(context)),
+      ),
+      onTap: () {
         _pageController.nextPage(
-          duration: Duration(milliseconds: 500),
+          duration: context.lowDuration,
           curve: Curves.ease,
         );
       },

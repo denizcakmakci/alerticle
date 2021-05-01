@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/init/theme/app_theme_light.dart';
-//import 'package:tasarim_proje/core/init/theme/app_theme_light.dart';
+
+import '../../core/init/theme/app_theme_light.dart';
 
 class BaseCard extends StatelessWidget {
   final Icon icon;
@@ -13,12 +13,8 @@ class BaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.only(bottom: 25),
+    return Container(
       color: AppThemeLight.instance.colorSchemeLight.defaultCard,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
       child: ListTile(
         leading: Padding(
           padding: const EdgeInsets.all(6.0),

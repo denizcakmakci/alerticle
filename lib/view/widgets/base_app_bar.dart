@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/init/theme/app_theme_light.dart';
 import '../../core/widgets/locale_text.dart';
@@ -15,6 +16,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      brightness: Brightness.dark,
       automaticallyImplyLeading: false,
       leading: widget,
       title: title,

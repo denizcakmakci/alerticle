@@ -26,6 +26,14 @@ abstract class  LocaleKeys {
   static const myList_bottomsheet_url = 'myList.bottomsheet.url';
   static const myList_bottomsheet_button = 'myList.bottomsheet.button';
   static const myList_bottomsheet = 'myList.bottomsheet';
+  static const myList_alertDelete_title = 'myList.alertDelete.title';
+  static const myList_alertDelete_subtitle = 'myList.alertDelete.subtitle';
+  static const myList_alertDelete_delete = 'myList.alertDelete.delete';
+  static const myList_alertDelete_Cancel = 'myList.alertDelete.Cancel';
+  static const myList_alertDelete = 'myList.alertDelete';
+  static const myList_alertAdd_title = 'myList.alertAdd.title';
+  static const myList_alertAdd_Ok = 'myList.alertAdd.Ok';
+  static const myList_alertAdd = 'myList.alertAdd';
   static const myList = 'myList';
   static const bottomNavBar_mylist = 'bottomNavBar.mylist';
   static const bottomNavBar_timing = 'bottomNavBar.timing';
