@@ -8,11 +8,11 @@
         {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
         "page4":
         {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-        "Skip" : "Skip",
+        "Skip" : "Next",
         "googleDesc" : "Sign in with Google"
     },
     "profile" : {
-        "apptitle": "PROFILE"
+        "appBarTitle": "PROFILE"
     },
     "myList" : {
         "appBarTitle" : "MY LIST",
@@ -22,6 +22,11 @@
         {"title": "Delete Comfirmation", "subtitle": "Are you sure you want to delete this item ?", "delete": "Delete", "Cancel": "Cancel"},
         "alertAdd":
         {"title": "Input fields must not be empty", "Ok": "Ok"}
+    },
+    "timing" : {
+        "appBarTitle" : "TIMING",
+        "alarmadd":
+        {"title":"Add Alarm","label": "Label", "repeat": "Repeat", "type": "Type", "Cancel": "Cancel", "Okey":"Okey"}
     },
     "bottomNavBar" : {
         "mylist" : "My List",

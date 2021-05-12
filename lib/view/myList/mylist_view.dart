@@ -130,6 +130,7 @@ class MyListView extends StatelessWidget {
             .textTheme
             .headline1
             .copyWith(color: context.colors.primaryVariant, fontSize: 14),
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
@@ -210,6 +211,7 @@ class MyListView extends StatelessWidget {
 
   TextField textFieldUrl(MyListViewModel viewModel, BuildContext context) {
     return TextField(
+      autocorrect: true,
       cursorRadius: Radius.circular(30),
       showCursor: true,
       cursorColor: context.colors.surface,
@@ -232,6 +234,7 @@ class MyListView extends StatelessWidget {
 
   TextField textFieldTitle(MyListViewModel viewModel, BuildContext context) {
     return TextField(
+      autocorrect: true,
       cursorRadius: Radius.circular(30),
       showCursor: true,
       cursorColor: context.colors.surface,

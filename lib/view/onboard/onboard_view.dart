@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasarim_proje/view/constants/image_path_svg.dart';
 
 import '../../core/base/base_view.dart';
 import '../../core/init/extensions/context_extension.dart';
@@ -196,7 +197,7 @@ class OnBoardView extends StatelessWidget {
             Container(
                 width: 35,
                 height: 35,
-                child: SvgPicture.asset('assets/svg/google.svg')),
+                child: SvgPicture.asset(SVGImagePaths.instance.googleSVG)),
             SizedBox(width: 20),
             LocaleText(
                 value: LocaleKeys.onBoard_googleDesc,

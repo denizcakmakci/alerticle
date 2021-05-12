@@ -54,5 +54,5 @@ extension PageExtension on BuildContext {
 
 extension DurationExtension on BuildContext {
   Duration get lowDuration => Duration(milliseconds: 500);
-  Duration get normalDuration => Duration(seconds: 1);
+  Duration get normalDuration => Duration(seconds: 2);
 }

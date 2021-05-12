@@ -28,15 +28,8 @@ class AppThemeLight extends AppTheme with ILightTheme {
               borderRadius: BorderRadius.circular(20),
             )),
         inputDecorationTheme: InputDecorationTheme(
-            focusColor: Colors.black12,
-            labelStyle: TextStyle(),
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.zero,
-            filled: true,
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
-            // border: OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
-            focusedBorder: OutlineInputBorder()),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white))),
         iconTheme: IconThemeData(
           color: colorSchemeLight.lightGray,
           size: 24,

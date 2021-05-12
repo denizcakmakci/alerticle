@@ -22,6 +22,7 @@ class BaseCard extends StatelessWidget {
         ),
         title: title,
         subtitle: subtitle,
+
         //isThreeLine: true,
         //onTap: ,
       ),

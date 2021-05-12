@@ -16,7 +16,7 @@ abstract class  LocaleKeys {
   static const onBoard_Skip = 'onBoard.Skip';
   static const onBoard_googleDesc = 'onBoard.googleDesc';
   static const onBoard = 'onBoard';
-  static const profile_apptitle = 'profile.apptitle';
+  static const profile_appBarTitle = 'profile.appBarTitle';
   static const profile = 'profile';
   static const myList_appBarTitle = 'myList.appBarTitle';
   static const myList_bottomsheet_listen = 'myList.bottomsheet.listen';
@@ -35,6 +35,15 @@ abstract class  LocaleKeys {
   static const myList_alertAdd_Ok = 'myList.alertAdd.Ok';
   static const myList_alertAdd = 'myList.alertAdd';
   static const myList = 'myList';
+  static const timing_appBarTitle = 'timing.appBarTitle';
+  static const timing_alarmadd_title = 'timing.alarmadd.title';
+  static const timing_alarmadd_label = 'timing.alarmadd.label';
+  static const timing_alarmadd_repeat = 'timing.alarmadd.repeat';
+  static const timing_alarmadd_type = 'timing.alarmadd.type';
+  static const timing_alarmadd_Cancel = 'timing.alarmadd.Cancel';
+  static const timing_alarmadd_Okey = 'timing.alarmadd.Okey';
+  static const timing_alarmadd = 'timing.alarmadd';
+  static const timing = 'timing';
   static const bottomNavBar_mylist = 'bottomNavBar.mylist';
   static const bottomNavBar_timing = 'bottomNavBar.timing';
   static const bottomNavBar_profile = 'bottomNavBar.profile';

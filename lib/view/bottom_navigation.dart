@@ -1,13 +1,13 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tasarim_proje/view/timing/timing_view.dart';
 
 import '../core/init/extensions/context_extension.dart';
 import '../core/init/lang/locale_keys.g.dart';
 import '../core/widgets/locale_text.dart';
 import 'myList/mylist_view.dart';
 import 'profile/profile_view.dart';
-import 'test/test.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -41,7 +41,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           },
           children: <Widget>[
             MyListView(),
-            Test(),
+            TimingView(),
             ProfileView(),
           ],
         ),

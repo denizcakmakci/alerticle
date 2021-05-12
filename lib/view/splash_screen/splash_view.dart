@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasarim_proje/view/constants/image_path_svg.dart';
 
 import '../../core/base/base_view.dart';
 import 'splash_view_model.dart';
+import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
 
 class SplashView extends StatelessWidget {
   @override
@@ -13,7 +16,13 @@ class SplashView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, SplashViewModel value) => Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: context.colors.onPrimary,
+        body: Container(
+          alignment: Alignment.center,
+          child: SvgPicture.asset(
+            SVGImagePaths.instance.flutterSVG,
+          ),
+        ),
       ),
     );
   }
