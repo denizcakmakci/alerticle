@@ -32,6 +32,16 @@ class StatusService {
     return ref;
   }
 
+  Future<QuerySnapshot> getStatusWatch() {
+    var ref = _firestore
+        .collection("Users")
+        .where("list")
+        .where("type", arrayContains: "Watch")
+        .get();
+
+    return ref;
+  }
+
   Future<dynamic> getDocByID() async {
     DocumentSnapshot doc = await _firestore.collection("Users").doc(user).get();
     if (doc.exists) {

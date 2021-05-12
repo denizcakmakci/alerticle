@@ -14,4 +14,5 @@ class SVGImagePaths {
   final notificationSVG = 'Social_notification'.toSVG;
   final videoSVG = 'Video'.toSVG;
   final googleSVG = 'google'.toSVG;
+  final flutterSVG = 'flutter'.toSVG;
 }

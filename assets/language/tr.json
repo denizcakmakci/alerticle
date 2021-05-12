@@ -8,11 +8,11 @@
         {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
         "page4":
         {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-        "Skip" : "Atla",
+        "Skip" : "İleri",
         "googleDesc" : "Google ile giriş"
     },
     "profile" : {
-        "apptitle": "PROFİL"
+        "appBarTitle": "PROFİL"
     },
     "myList" : {
         "appBarTitle" : "LİSTEM",
@@ -22,6 +22,11 @@
         {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz ?", "delete": "Sil", "Cancel": "İptal"},
         "alertAdd":
         {"title": "Giriş alanları boş olmamalıdır", "Ok": "Anladım"}
+    },
+    "timing" : {
+        "appBarTitle" : "ZAMANLAMA",
+        "alarmadd":
+        {"title":"Alarm Ekle","label": "Etiket", "repeat": "Tekrar", "type": "Tür", "Cancel": "İptal", "Okey":"Tamam"}
     },
     "bottomNavBar" : {
         "mylist" : "Listem",

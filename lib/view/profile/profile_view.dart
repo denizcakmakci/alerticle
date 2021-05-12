@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/base/base_view.dart';
@@ -20,28 +19,23 @@ class ProfileView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, ProfileViewModel viewModel) =>
-          AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
-        ),
-        child: Scaffold(
-          appBar: BaseAppBar(
-            title: LocaleText(
-              value: LocaleKeys.profile_apptitle,
-              style: TextStyle(fontSize: 28),
-            ),
-            widgets: [
-              IconButton(
-                  icon: Icon(FontAwesomeIcons.signOutAlt),
-                  splashColor: Colors.transparent,
-                  onPressed: () async {
-                    await GoogleSignHelper.instance.signOut();
-                    viewModel.navigateToOnboardPage();
-                  }),
-            ],
+          Scaffold(
+        appBar: BaseAppBar(
+          title: LocaleText(
+            value: LocaleKeys.profile_appBarTitle,
+            style: TextStyle(fontSize: 28),
           ),
-          body: buildGoogleInfo(viewModel, context),
+          widgets: [
+            IconButton(
+                icon: Icon(FontAwesomeIcons.signOutAlt),
+                splashColor: Colors.transparent,
+                onPressed: () async {
+                  await GoogleSignHelper.instance.signOut();
+                  viewModel.navigateToOnboardPage();
+                }),
+          ],
         ),
+        body: buildGoogleInfo(viewModel, context),
       ),
     );
   }
