@@ -6,12 +6,13 @@ class StatusService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var user = LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN);
 
-  Future<void> addStatus(String type, String title, String url) async {
+  Future<void> addStatus(
+      String type, String title, String url, bool isDeleted) async {
     var ref = _firestore.collection("Users").doc(user);
 
     ref.update({
       'list': FieldValue.arrayUnion([
-        {'type': type, 'title': title, 'url': url}
+        {'type': type, 'title': title, 'url': url, "isDeleted": isDeleted}
       ])
     });
   }
@@ -32,16 +33,6 @@ class StatusService {
     return ref;
   }
 
-  Future<QuerySnapshot> getStatusWatch() {
-    var ref = _firestore
-        .collection("Users")
-        .where("list")
-        .where("type", arrayContains: "Watch")
-        .get();
-
-    return ref;
-  }
-
   Future<dynamic> getDocByID() async {
     DocumentSnapshot doc = await _firestore.collection("Users").doc(user).get();
     if (doc.exists) {
@@ -58,6 +49,15 @@ class StatusService {
     } else {
       return Future.value(false);
     }
+  }
+
+  Future<void> deleteData(var docId) {
+    var ref = _firestore.collection("Users").doc(user).update({
+      "list.$docId.isDeleted": true,
+    }).then((value) {
+      print("delete");
+    });
+    return ref;
   }
 
   Future<void> removeStatus(var docId) {

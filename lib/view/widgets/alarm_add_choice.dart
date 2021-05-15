@@ -14,6 +14,7 @@ class AlarmChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      highlightColor: Colors.transparent,
       child: Container(
         margin: EdgeInsets.fromLTRB(40, 30, 40, 30),
         child: Row(
