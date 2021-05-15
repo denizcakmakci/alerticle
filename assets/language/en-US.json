@@ -26,7 +26,11 @@
     "timing" : {
         "appBarTitle" : "TIMING",
         "alarmadd":
-        {"title":"Add Alarm","label": "Label", "repeat": "Repeat", "type": "Type", "Cancel": "Cancel", "Okey":"Okey"}
+        {"title":"Add Alarm","label": "Label", "repeat": "Repeat", "type": "Type", "Cancel": "Cancel", "Okey":"Okey"},
+        "repeat":
+        {"Mon": "Monday", "Tue": "Tuesday", "Wed": "Wednesday", "Thu": "Thursday","Fri": "Friday", "Sat": "Saturday", "Sun": "Sunday"},
+        "type":
+        {"listen": "Listen", "read": "Read", "watch": "Watch"}
     },
     "bottomNavBar" : {
         "mylist" : "My List",

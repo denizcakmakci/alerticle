@@ -26,7 +26,11 @@
     "timing" : {
         "appBarTitle" : "ZAMANLAMA",
         "alarmadd":
-        {"title":"Alarm Ekle","label": "Etiket", "repeat": "Tekrar", "type": "Tür", "Cancel": "İptal", "Okey":"Tamam"}
+        {"title":"Alarm Ekle","label": "Etiket", "repeat": "Tekrar", "type": "Tür", "Cancel": "İptal", "Okey":"Tamam"},
+        "repeat":
+        {"Mon": "Pazartesi", "Tue": "Salı", "Wed": "Çarşamba", "Thu": "Perşembe","Fri": "Cuma", "Sat": "Cumartesi", "Sun": "Pazar"},
+        "type":
+        {"listen": "Dinle", "read": "Oku", "watch": "İzle"}
     },
     "bottomNavBar" : {
         "mylist" : "Listem",

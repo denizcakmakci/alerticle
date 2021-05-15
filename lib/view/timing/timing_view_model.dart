@@ -9,30 +9,6 @@ abstract class TimingViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => this.context = context;
 
-  TextEditingController textFieldController = TextEditingController();
-
-  static String sun = "Sun";
-  static String mon = "Mon";
-  static String tue = "Tue";
-  static String wed = "Wed";
-
-  @observable
-  Map<String, bool> days = {
-    sun: false,
-    mon: false,
-    tue: false,
-    wed: false,
-  };
-
-  @observable
-  DateTime dateTime;
-
-  DateTime getDateTime() {
-    final now = DateTime.now();
-
-    return DateTime(now.year, now.month, now.day, now.hour, 0);
-  }
-
   @override
   void init() {}
 }

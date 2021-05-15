@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tasarim_proje/view/widgets/list_fire_data.dart';
 
 import '../../core/base/base_view.dart';
 import '../../core/init/extensions/context_extension.dart';
@@ -35,7 +37,15 @@ class ProfileView extends StatelessWidget {
                 }),
           ],
         ),
-        body: buildGoogleInfo(viewModel, context),
+        body: Column(
+          children: [
+            buildGoogleInfo(viewModel, context),
+            ListData(
+              status: true,
+              field: 'isDeleted',
+            )
+          ],
+        ),
       ),
     );
   }
