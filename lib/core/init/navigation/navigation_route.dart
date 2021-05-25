@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/view/timing/timing_view.dart';
+import 'package:tasarim_proje/view/widgets/no_internet.dart';
 
-import '../../../view/bottom_navigation.dart';
+import '../../../view/bottom_nav_bar.dart';
 import '../../../view/myList/mylist_view.dart';
 import '../../../view/onboard/onboard_view.dart';
 import '../../../view/profile/profile_view.dart';
 import '../../../view/splash_screen/splash_view.dart';
+import '../../../view/timing/timing_view.dart';
 import '../../device/constants.dart';
 
 class NavigationRoute {
@@ -25,13 +26,15 @@ class NavigationRoute {
       case NavigationConstants.SPLASH:
         return normalNavigate(SplashView());
       case NavigationConstants.HOME:
-        return normalNavigate(BottomNavigation());
+        return normalNavigate(BottomBar());
       case NavigationConstants.MYLIST:
         return normalNavigate(MyListView());
       case NavigationConstants.TIMING:
         return normalNavigate(TimingView());
       case NavigationConstants.PROFILE:
         return normalNavigate(ProfileView());
+      case NavigationConstants.NOINTERNET:
+        return normalNavigate(NoInternet());
 
       default:
         return MaterialPageRoute(

@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tasarim_proje/view/widgets/list_fire_data.dart';
 
 import '../../core/base/base_view.dart';
 import '../../core/init/extensions/context_extension.dart';
@@ -9,6 +7,7 @@ import '../../core/init/lang/locale_keys.g.dart';
 import '../../core/services/google_signin.dart';
 import '../../core/widgets/locale_text.dart';
 import '../widgets/base_app_bar.dart';
+import '../widgets/list_fire_data.dart';
 import 'profile_view_model.dart';
 
 class ProfileView extends StatelessWidget {
@@ -40,9 +39,22 @@ class ProfileView extends StatelessWidget {
         body: Column(
           children: [
             buildGoogleInfo(viewModel, context),
-            ListData(
-              status: true,
-              field: 'isDeleted',
+            Container(
+                margin: EdgeInsets.fromLTRB(30, 40, 30, 0),
+                child: LocaleText(
+                  value: LocaleKeys.profile_history,
+                  style: TextStyle(fontSize: 28, color: context.colors.primary),
+                )),
+            Expanded(
+              flex: 4,
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: 30,
+                ),
+                child: ListData(
+                    function: statusService.getLinkWithQuery('deleted', true),
+                    page: 'profile'),
+              ),
             )
           ],
         ),

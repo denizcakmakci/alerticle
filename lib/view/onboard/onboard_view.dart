@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasarim_proje/view/constants/image_path_svg.dart';
 
 import '../../core/base/base_view.dart';
 import '../../core/init/extensions/context_extension.dart';
 import '../../core/init/lang/locale_keys.g.dart';
 import '../../core/services/google_signin.dart';
 import '../../core/widgets/locale_text.dart';
+import '../constants/image_path_svg.dart';
 import '../widgets/on_board_circle.dart';
 import 'onboard_model.dart';
 import 'onboard_view_model.dart';
@@ -23,22 +23,25 @@ class OnBoardView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, OnBoardViewModel viewModel) =>
-          Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              Expanded(flex: 5, child: buildPageView(viewModel)),
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                      padding: context.paddingMediumHorizontal,
-                      alignment: Alignment.topLeft,
-                      child: buildListViewCircles(viewModel))),
-              Expanded(flex: 1, child: bottomButtons(context, viewModel))
-            ],
+          WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Expanded(flex: 5, child: buildPageView(viewModel)),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                        padding: context.paddingMediumHorizontal,
+                        alignment: Alignment.topLeft,
+                        child: buildListViewCircles(viewModel))),
+                Expanded(flex: 1, child: bottomButtons(context, viewModel))
+              ],
+            ),
           ),
         ),
       ),
@@ -205,7 +208,7 @@ class OnBoardView extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1
-                    .copyWith(color: context.colors.primary, fontSize: 20)),
+                    .copyWith(color: Color(0xff637074), fontSize: 20)),
           ],
         ),
       ),

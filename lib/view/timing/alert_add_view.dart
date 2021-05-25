@@ -1,14 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
-import 'package:tasarim_proje/core/init/extensions/extensions.dart';
-import 'package:tasarim_proje/core/init/lang/locale_keys.g.dart';
-import 'package:tasarim_proje/core/widgets/locale_text.dart';
-import 'package:tasarim_proje/view/widgets/alarm_add_choice.dart';
-import 'package:tasarim_proje/view/widgets/base_app_bar.dart';
+import '../../core/init/extensions/context_extension.dart';
+import '../../core/init/extensions/extensions.dart';
+import '../../core/init/lang/locale_keys.g.dart';
+import '../../core/services/firestore/status_service.dart';
+import '../../core/widgets/locale_text.dart';
+import '../widgets/alarm_add_choice.dart';
+import '../widgets/base_app_bar.dart';
 
+//Radio class
 class MyType {
   String type;
   int index;
@@ -22,6 +25,10 @@ class AlarmAdd extends StatefulWidget {
 }
 
 class _AlarmAddState extends State<AlarmAdd> {
+  TextEditingController _textFieldController = TextEditingController();
+  StatusService statusService = StatusService();
+
+  //Time picker variables
   DateTime _dateTime;
 
   DateTime getDateTime() {
@@ -36,6 +43,7 @@ class _AlarmAddState extends State<AlarmAdd> {
     _dateTime = getDateTime();
   }
 
+  //checkbox members
   static String mon = "Mon";
   static String tue = "Tue";
   static String wed = "Wed";
@@ -54,16 +62,7 @@ class _AlarmAddState extends State<AlarmAdd> {
     sun: false,
   };
 
-  String defaultChoice = "Listen";
-  int defaultIndex = 0;
-
-  List<MyType> types = [
-    MyType(
-        index: 0, type: "Listen", title: LocaleKeys.timing_type_listen.locale),
-    MyType(index: 1, type: "Read", title: LocaleKeys.timing_type_read.locale),
-    MyType(index: 2, type: "Watch", title: LocaleKeys.timing_type_watch.locale),
-  ];
-
+  //checkbox get selected member
   var certainDays = [];
   getItems() {
     days.forEach((key, value) {
@@ -71,12 +70,24 @@ class _AlarmAddState extends State<AlarmAdd> {
         certainDays.add(key);
       }
     });
-    print(certainDays);
-    certainDays.clear();
+    return certainDays;
   }
+
+  //Radio variables
+  String defaultChoice = "Listen";
+  int defaultIndex = 0;
+
+  //radio members
+  List<MyType> types = [
+    MyType(
+        index: 0, type: "Listen", title: LocaleKeys.timing_type_listen.locale),
+    MyType(index: 1, type: "Read", title: LocaleKeys.timing_type_read.locale),
+    MyType(index: 2, type: "Watch", title: LocaleKeys.timing_type_watch.locale),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    String hour = DateFormat.Hm().format(_dateTime);
     return Scaffold(
         appBar: BaseAppBar(
           widget: IconButton(
@@ -93,11 +104,11 @@ class _AlarmAddState extends State<AlarmAdd> {
             IconButton(
               icon: Icon(FontAwesomeIcons.check),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(_dateTime.toString()),
-                  ),
-                );
+                getItems();
+                statusService.addAlarm(hour, _textFieldController.text,
+                    certainDays, defaultChoice);
+                certainDays.clear();
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -238,7 +249,6 @@ class _AlarmAddState extends State<AlarmAdd> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    getItems();
                   },
                   child: Text(LocaleKeys.timing_alarmadd_Okey.locale),
                 ),
@@ -270,7 +280,6 @@ class _AlarmAddState extends State<AlarmAdd> {
   }
 
   Future<void> alertLabel(BuildContext context) {
-    TextEditingController _textFieldController = TextEditingController();
     return showDialog(
       useSafeArea: true,
       context: context,
@@ -319,7 +328,7 @@ class _AlarmAddState extends State<AlarmAdd> {
           backgroundColor: Colors.transparent,
           initialDateTime: _dateTime,
           mode: CupertinoDatePickerMode.time,
-          minuteInterval: 5,
+          //minuteInterval: 5,
           use24hFormat: true,
           onDateTimeChanged: (dateTime) {
             setState(() {

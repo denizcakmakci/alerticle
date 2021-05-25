@@ -7,25 +7,29 @@ class BaseCard extends StatelessWidget {
   final Widget title;
   final Widget subtitle;
   //final Color color;
+  final Function function;
 
-  const BaseCard({Key key, this.icon, this.title, this.subtitle})
+  const BaseCard({Key key, this.icon, this.title, this.subtitle, this.function})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppThemeLight.instance.colorSchemeLight.defaultCard,
-      child: ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: icon,
-        ),
-        title: title,
-        subtitle: subtitle,
+    return InkWell(
+      child: Container(
+        color: AppThemeLight.instance.colorSchemeLight.defaultCard,
+        child: ListTile(
+          leading: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: icon,
+          ),
+          title: title,
+          subtitle: subtitle,
 
-        //isThreeLine: true,
-        //onTap: ,
+          //isThreeLine: true,
+          //onTap: ,
+        ),
       ),
+      onTap: function,
     );
   }
 }

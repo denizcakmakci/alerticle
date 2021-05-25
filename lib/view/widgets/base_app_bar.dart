@@ -15,16 +15,19 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      brightness: Brightness.dark,
-      automaticallyImplyLeading: false,
-      leading: widget,
-      title: title,
-      backgroundColor: backgroundColor,
-      actions: widgets,
-      iconTheme: IconThemeData(
-          color: AppThemeLight.instance.colorSchemeLight.lightGray, size: 24),
-      elevation: 0,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+      child: AppBar(
+        brightness: Brightness.dark,
+        automaticallyImplyLeading: false,
+        leading: widget,
+        title: title,
+        backgroundColor: backgroundColor,
+        actions: widgets,
+        iconTheme: IconThemeData(
+            color: AppThemeLight.instance.colorSchemeLight.lightGray, size: 24),
+        elevation: 0,
+      ),
     );
   }
 

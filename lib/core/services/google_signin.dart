@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../device/constants.dart';
@@ -52,15 +53,15 @@ class GoogleSignHelper {
     );
 
     final user = (await _auth.signInWithCredential(credential)).user;
-    //var tokenResult = await user.getIdToken();
     await LocaleManager.instance
         .setStringValue(PreferencesKeys.TOKEN, user.uid);
-    //print(user.uid);
+
+    //cloud messaging get token
     var service = new StatusService();
-    bool isDocExists = await service.isDocExists();
-    if (!isDocExists) {
-      service.addEmptyDoc();
-    }
+    await FirebaseMessaging.instance.requestPermission();
+    final token = await FirebaseMessaging.instance.getToken();
+    service.addUsers(token);
+    FirebaseMessaging.instance.onTokenRefresh.listen(service.addUsers);
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }

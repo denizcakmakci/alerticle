@@ -9,8 +9,10 @@ import 'core/init/lang/language_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
 import 'core/init/navigation/navigation_service.dart';
 import 'core/init/theme/app_theme_light.dart';
+import 'core/services/firestore/status_service.dart';
 import 'view/splash_screen/splash_view.dart';
 
+StatusService service = StatusService();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();

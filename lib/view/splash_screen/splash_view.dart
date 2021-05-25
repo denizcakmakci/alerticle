@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasarim_proje/view/constants/image_path_svg.dart';
+import '../constants/image_path_svg.dart';
 
 import '../../core/base/base_view.dart';
 import 'splash_view_model.dart';
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
+import '../../core/init/extensions/context_extension.dart';
 
 class SplashView extends StatelessWidget {
   @override
