@@ -12,16 +12,17 @@
         "googleDesc" : "Google ile giriş"
     },
     "profile" : {
-        "appBarTitle": "PROFİL"
+        "appBarTitle": "PROFİL",
+        "history": "GEÇMİŞ"
     },
     "myList" : {
         "appBarTitle" : "LİSTEM",
         "bottomsheet":
-        {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE"},
-        "alertDelete":
-        {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz ?", "delete": "Sil", "Cancel": "İptal"},
+        {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE", "error": "Lütfen geçerli bir url giriniz"},
         "alertAdd":
-        {"title": "Giriş alanları boş olmamalıdır", "Ok": "Anladım"}
+        {"title": "Giriş alanları boş olmamalıdır", "Ok": "Anladım"},
+        "emptyList": 
+        {"title": "BOMBOŞ!!", "subtitle": "Listende hiçbir şey yok. Haydi eklemeye başla."}
     },
     "timing" : {
         "appBarTitle" : "ZAMANLAMA",
@@ -30,11 +31,27 @@
         "repeat":
         {"Mon": "Pazartesi", "Tue": "Salı", "Wed": "Çarşamba", "Thu": "Perşembe","Fri": "Cuma", "Sat": "Cumartesi", "Sun": "Pazar"},
         "type":
-        {"listen": "Dinle", "read": "Oku", "watch": "İzle"}
+        {"listen": "Dinle", "read": "Oku", "watch": "İzle"},
+        "days":
+        {"Mon": "Pzt", "Tue": "Sal", "Wed": "Çar", "Thu": "Per","Fri": "Cum", "Sat": "Cmt", "Sun": "Paz"}
     },
     "bottomNavBar" : {
         "mylist" : "Listem",
         "timing" : "Zamanlama",
         "profile" : "Profil"
+    },
+    "card" : {
+        "alertDelete":
+        {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz ?", "delete": "Sil", "cancel": "İptal"},
+        "alertOpenLink":
+        {"title": "Yönlendirme Onayı", "subtitle": "İlgili konuma yönlendirilmek istediğinize emin misiniz ?", "open": "Evet", "cancel": "İptal"},
+        "alertbacklist" :
+        {"title": "", "subtitle": "Bu öğeyi listeme tekrar eklemek istediğinize emin misiniz ?", "yes": "Evet", "cancel": "İptal"}
+
+    },
+    "noInternet": {
+        "subtitle1": "İnternet bağlantısı bulunamadı.",
+        "subtitle2": "Bağlantınızı kontrol edin.",
+        "button_title": "Yeniden Dene"
     }
 }

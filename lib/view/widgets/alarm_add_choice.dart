@@ -2,8 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tasarim_proje/core/widgets/locale_text.dart';
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
+
+import '../../core/init/extensions/context_extension.dart';
+import '../../core/widgets/locale_text.dart';
 
 class AlarmChoice extends StatelessWidget {
   final String text;

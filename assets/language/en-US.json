@@ -12,16 +12,17 @@
         "googleDesc" : "Sign in with Google"
     },
     "profile" : {
-        "appBarTitle": "PROFILE"
+        "appBarTitle": "PROFILE",
+        "history": "HISTORY"
     },
     "myList" : {
         "appBarTitle" : "MY LIST",
         "bottomsheet":
-        {"listen": "Listen", "read": "Read", "watch": "Watch", "title": "Enter title", "url": "Enter url", "button": "ADD"},
-        "alertDelete":
-        {"title": "Delete Comfirmation", "subtitle": "Are you sure you want to delete this item ?", "delete": "Delete", "Cancel": "Cancel"},
+        {"listen": "Listen", "read": "Read", "watch": "Watch", "title": "Enter title", "url": "Enter url", "button": "ADD", "error": "Please enter a valid url"},
         "alertAdd":
-        {"title": "Input fields must not be empty", "Ok": "Ok"}
+        {"title": "Input fields must not be empty", "Ok": "Ok"},
+        "emptyList": 
+        {"title": "EMPTY!!", "subtitle": "There is nothing on your list. Let's start adding."}
     },
     "timing" : {
         "appBarTitle" : "TIMING",
@@ -30,12 +31,29 @@
         "repeat":
         {"Mon": "Monday", "Tue": "Tuesday", "Wed": "Wednesday", "Thu": "Thursday","Fri": "Friday", "Sat": "Saturday", "Sun": "Sunday"},
         "type":
-        {"listen": "Listen", "read": "Read", "watch": "Watch"}
+        {"listen": "Listen", "read": "Read", "watch": "Watch"},
+        "days":
+        {"Mon": "Mon", "Tue": "Tue", "Wed": "Wed", "Thu": "Thuy","Fri": "Fri", "Sat": "Sat", "Sun": "Sun"}
+        
     },
     "bottomNavBar" : {
         "mylist" : "My List",
         "timing" : "Timing",
         "profile" : "Profile"
+    },
+    "card" :{
+        "alertDelete":
+        {"title": "Delete Comfirmation", "subtitle": "Are you sure you want to delete this item ?", "delete": "Delete", "cancel": "Cancel"},
+        "alertOpenLink":
+        {"title": "Yönlendirme Onayı", "subtitle": "İlgili konuma yönlendirilmek istediğinize emin misiniz ?", "open": "Evet", "cancel": "İptal"},
+        "alertbacklist" :
+        {"title": "", "subtitle": "Are you sure you want to add this item to My List again ?", "yes": "Yes", "cancel": "Cancel"}
+
+    },
+    "noInternet": {
+        "subtitle1": "No internet connection found.",
+        "subtitle2": "Check your connection.",
+        "button_title": "Try Again"
     }
 
 }
