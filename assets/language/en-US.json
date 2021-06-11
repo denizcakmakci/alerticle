@@ -1,31 +1,36 @@
 {
     "onBoard" :{
         "page1":
-        {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Add to list","desc":"Don't have time to do the activity you see at that moment?  Easily add what you want to watch, read and listen to later."},
         "page2":
-        {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Start timing","desc":"You can set an alarm so that we recommend you a random one of the content that you have saved at certain times. It's up to you to choose what kind of alarm you want."},
         "page3":
-        {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Click notification","desc":"You can have random content by clicking on the notification we send you at the time you specify. Then we can update the content for you or direct redirect to the relevant site."},
         "page4":
-        {"title":"What is Lorem Ipsum?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Enjoy","desc":"All you have to do is enjoy your activity!"},
         "Skip" : "Next",
         "googleDesc" : "Sign in with Google"
     },
     "profile" : {
-        "appBarTitle": "PROFILE",
-        "history": "HISTORY"
+        "appBarTitle": "Profile",
+        "history": "History",
+        "empty":
+        {"title": "No completed content", "subtitle": "You don't have any a completed content, yet. Your history will appear here."}
     },
     "myList" : {
-        "appBarTitle" : "MY LIST",
+        "appBarTitle" : "My List",
         "bottomsheet":
         {"listen": "Listen", "read": "Read", "watch": "Watch", "title": "Enter title", "url": "Enter url", "button": "ADD", "error": "Please enter a valid url"},
         "alertAdd":
         {"title": "Input fields must not be empty", "Ok": "Ok"},
+        "filter":
+        {"all": "All", "listen": "Listen", "read": "Read", "watch": "Watch"},
         "emptyList": 
         {"title": "EMPTY!!", "subtitle": "There is nothing on your list. Let's start adding."}
     },
     "timing" : {
-        "appBarTitle" : "TIMING",
+        "appBarTitle" : "Timing",
+        "empty": "No created alarm clocks. Start creating a new alarm clock by tapping + button. ",
         "alarmadd":
         {"title":"Add Alarm","label": "Label", "repeat": "Repeat", "type": "Type", "Cancel": "Cancel", "Okey":"Okey"},
         "repeat":
@@ -33,7 +38,7 @@
         "type":
         {"listen": "Listen", "read": "Read", "watch": "Watch"},
         "days":
-        {"Mon": "Mon", "Tue": "Tue", "Wed": "Wed", "Thu": "Thuy","Fri": "Fri", "Sat": "Sat", "Sun": "Sun"}
+        {"Mon": "Mon", "Tue": "Tue", "Wed": "Wed", "Thu": "Thu","Fri": "Fri", "Sat": "Sat", "Sun": "Sun"}
         
     },
     "bottomNavBar" : {
@@ -43,17 +48,24 @@
     },
     "card" :{
         "alertDelete":
-        {"title": "Delete Comfirmation", "subtitle": "Are you sure you want to delete this item ?", "delete": "Delete", "cancel": "Cancel"},
+        {"title": "Delete Confirmation", "subtitle": "Are you sure you want to delete this item?", "delete": "Delete", "cancel": "Cancel"},
         "alertOpenLink":
-        {"title": "Yönlendirme Onayı", "subtitle": "İlgili konuma yönlendirilmek istediğinize emin misiniz ?", "open": "Evet", "cancel": "İptal"},
+        {"title": "Referral Confirmation", "subtitle": "Are you sure you want to be forwarded to the relevant address?", "open": "Yes", "cancel": "Cancel"},
         "alertbacklist" :
-        {"title": "", "subtitle": "Are you sure you want to add this item to My List again ?", "yes": "Yes", "cancel": "Cancel"}
+        {"title": "", "subtitle": "Are you sure you want to add this item to list again?", "yes": "Yes", "cancel": "Cancel"}
 
     },
     "noInternet": {
         "subtitle1": "No internet connection found.",
         "subtitle2": "Check your connection.",
         "button_title": "Try Again"
+    },
+    "detail": {
+        "title": "Detail",
+        "empty": "No description",
+        "notfound": "Sorry, we couldn't find an activity in your list that matches your search. Please try choosing a different type.",
+        "buttons":
+        {"refresh": "REFRESH", "open": "OPEN"}
     }
 
 }

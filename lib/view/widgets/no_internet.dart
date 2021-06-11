@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/core/init/lang/locale_keys.g.dart';
-import 'package:tasarim_proje/core/widgets/locale_text.dart';
-import 'package:tasarim_proje/view/splash_screen/splash_view_model.dart';
-import 'package:tasarim_proje/view/widgets/buttton.dart';
-import 'package:tasarim_proje/core/init/extensions/extensions.dart';
-import 'package:tasarim_proje/core/init/extensions/context_extension.dart';
+import '../../core/init/lang/locale_keys.g.dart';
+import '../../core/widgets/locale_text.dart';
+import '../screens/splash_screen/splash_view_model.dart';
+import 'buttton.dart';
+import '../../core/init/extensions/extensions.dart';
+import '../../core/init/extensions/context_extension.dart';
 
 SplashViewModel model = SplashViewModel();
 
@@ -37,9 +37,8 @@ class NoInternet extends StatelessWidget {
               height: 50,
             ),
             AppButton(
-              width: 150,
-              height: 50,
               text: LocaleKeys.noInternet_button_title.locale,
+              padding: EdgeInsets.symmetric(horizontal: 10),
               ontap: () {
                 model.checkInternet();
               },

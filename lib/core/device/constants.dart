@@ -21,4 +21,5 @@ class NavigationConstants {
   static const String MYLIST = "/myList";
   static const String TIMING = "/timing";
   static const String NOINTERNET = "/no_internet";
+  static const String DETAIL = "/detail";
 }

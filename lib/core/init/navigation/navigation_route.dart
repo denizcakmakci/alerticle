@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tasarim_proje/view/widgets/no_internet.dart';
 
 import '../../../view/bottom_nav_bar.dart';
-import '../../../view/myList/mylist_view.dart';
-import '../../../view/onboard/onboard_view.dart';
-import '../../../view/profile/profile_view.dart';
-import '../../../view/splash_screen/splash_view.dart';
-import '../../../view/timing/timing_view.dart';
+import '../../../view/screens/detail/detail_view.dart';
+import '../../../view/screens/myList/mylist_view.dart';
+import '../../../view/screens/onboard/onboard_view.dart';
+import '../../../view/screens/profile/profile_view.dart';
+import '../../../view/screens/splash_screen/splash_view.dart';
+import '../../../view/screens/timing/timing_view.dart';
+import '../../../view/widgets/no_internet.dart';
 import '../../device/constants.dart';
 
 class NavigationRoute {
@@ -35,6 +36,8 @@ class NavigationRoute {
         return normalNavigate(ProfileView());
       case NavigationConstants.NOINTERNET:
         return normalNavigate(NoInternet());
+      case NavigationConstants.DETAIL:
+        return normalNavigate(DetailView());
 
       default:
         return MaterialPageRoute(

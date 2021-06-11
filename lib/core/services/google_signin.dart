@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../device/constants.dart';
 import '../init/cache/locale_manager.dart';
-import 'firestore/status_service.dart';
+import 'firestore/database_service.dart';
 
 class GoogleSignHelper {
   static GoogleSignHelper _instance = GoogleSignHelper._private();
@@ -57,11 +57,11 @@ class GoogleSignHelper {
         .setStringValue(PreferencesKeys.TOKEN, user.uid);
 
     //cloud messaging get token
-    var service = new StatusService();
+    var service = new DatabaseService();
     await FirebaseMessaging.instance.requestPermission();
+    FirebaseMessaging.instance.onTokenRefresh.listen(service.addUsers);
     final token = await FirebaseMessaging.instance.getToken();
     service.addUsers(token);
-    FirebaseMessaging.instance.onTokenRefresh.listen(service.addUsers);
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }

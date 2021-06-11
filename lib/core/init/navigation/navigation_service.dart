@@ -12,7 +12,7 @@ class NavigationService {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
   final removeAllOldRoutes = (Route<dynamic> route) => false;
 
-  Future<void> navigateToPage({String path, Object data}) async {
+  Future<void> navigateToPage({String path, String data}) async {
     await navigatorKey.currentState.pushNamed(path, arguments: data);
   }
 

@@ -1,31 +1,36 @@
 {
     "onBoard" :{
         "page1":
-        {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Listene ekle","desc":"O an gördüğün aktiviteyi yapmaya zamanın mı yok?  Daha sonra izlemek, okumak ve dinlemek istediğin şeyleri kolay bir şekilde listene ekle."},
         "page2":
-        {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Zamanlamaya başla","desc":"Belirli zamanlarda kaydettiğin içeriklerinden rastgele bir tanesini sana önermemiz için alarm kurabilirsin. Ne tür içerikli bir alarm istediğini seçmekte senin elinde."},
         "page3":
-        {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Bildirime tıkla","desc":"Belirlediğin zamanlarda sana gönderdiğimiz bildirime tıklayarak rastgele bir içeriğe sahip olabilirsin. Ardından senin için içeriği yenileyebilir ya da ilgili siteye direk yönlendirme yapabiliriz."},
         "page4":
-        {"title":"Lorem ipsum nedir?","desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {"title":"Keyfini çıkar","desc":"Geriye kalan yapman gereken tek şey yapmış olduğun aktivitenin keyfini çıkarmak! "},
         "Skip" : "İleri",
         "googleDesc" : "Google ile giriş"
     },
     "profile" : {
-        "appBarTitle": "PROFİL",
-        "history": "GEÇMİŞ"
+        "appBarTitle": "Profil",
+        "history": "Geçmiş",
+        "empty":
+        {"title": "Tamamlanmış içerik yok", "subtitle": "Henüz tamamlanmış içeriğiniz yok. Geçmişiniz burada görünecek."}
     },
     "myList" : {
-        "appBarTitle" : "LİSTEM",
+        "appBarTitle" : "Listem",
         "bottomsheet":
         {"listen": "Dinle", "read": "Oku", "watch": "İzle", "title": "Başlık giriniz", "url": "Url giriniz", "button": "EKLE", "error": "Lütfen geçerli bir url giriniz"},
         "alertAdd":
         {"title": "Giriş alanları boş olmamalıdır", "Ok": "Anladım"},
+        "filter":
+        {"all": "Tümü", "listen": "Dinleme", "read": "Okuma", "watch": "İzleme"},
         "emptyList": 
         {"title": "BOMBOŞ!!", "subtitle": "Listende hiçbir şey yok. Haydi eklemeye başla."}
     },
     "timing" : {
-        "appBarTitle" : "ZAMANLAMA",
+        "appBarTitle" : "Zamanlama",
+        "empty": "Oluşturulan alarm yok. + butonuna dokunarak yeni bir alarm oluşturmaya başlayın.",
         "alarmadd":
         {"title":"Alarm Ekle","label": "Etiket", "repeat": "Tekrar", "type": "Tür", "Cancel": "İptal", "Okey":"Tamam"},
         "repeat":
@@ -42,16 +47,23 @@
     },
     "card" : {
         "alertDelete":
-        {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz ?", "delete": "Sil", "cancel": "İptal"},
+        {"title": "Silme Onayı", "subtitle": "Bu öğeyi silmek istediğinize emin misiniz? ", "delete": "Sil", "cancel": "İptal"},
         "alertOpenLink":
-        {"title": "Yönlendirme Onayı", "subtitle": "İlgili konuma yönlendirilmek istediğinize emin misiniz ?", "open": "Evet", "cancel": "İptal"},
+        {"title": "Yönlendirme Onayı", "subtitle": "İlgili adrese yönlendirilmek istediğinize emin misiniz? ", "open": "Evet", "cancel": "İptal"},
         "alertbacklist" :
-        {"title": "", "subtitle": "Bu öğeyi listeme tekrar eklemek istediğinize emin misiniz ?", "yes": "Evet", "cancel": "İptal"}
+        {"title": "", "subtitle": "Bu öğeyi listeye tekrar eklemek istediğinize emin misiniz? ", "yes": "Evet", "cancel": "İptal"}
 
     },
     "noInternet": {
         "subtitle1": "İnternet bağlantısı bulunamadı.",
         "subtitle2": "Bağlantınızı kontrol edin.",
         "button_title": "Yeniden Dene"
+    },
+    "detail": {
+        "title": "Detay",
+        "empty": "Açıklama yok.",
+        "notfound": "Üzgünüz, listenizde aramanızla eşleşen bir etkinlik bulamadık. Lütfen farklı bir tür seçmeyi deneyin.",
+        "buttons":
+        {"refresh": "YENİLE", "open": "GİT"}
     }
 }
