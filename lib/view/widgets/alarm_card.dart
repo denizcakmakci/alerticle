@@ -2,44 +2,50 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/init/extensions/context_extension.dart';
-import '../constants/linear_gradient.dart';
 
 class BaseCardAlarm extends StatelessWidget {
   final String title;
   final String time;
   final list;
   final Widget cupSwitch;
+  final List<Color> color;
+  final String icon;
 
   const BaseCardAlarm(
-      {Key key, this.title, this.time, this.list, this.cupSwitch})
+      {Key key,
+      this.title,
+      this.time,
+      this.list,
+      this.cupSwitch,
+      @required this.color,
+      this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    GradientTemplate colors = GradientTemplate();
-    var gradientColor =
-        GradientTemplate.gradientTemplate[colors.randomindex].colors;
     return Container(
       height: 100,
-      decoration:
-          BoxDecoration(gradient: LinearGradient(colors: gradientColor)),
+      decoration: BoxDecoration(gradient: LinearGradient(colors: color)),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
         child: Column(
           children: [
             Row(
               children: [
-                Icon(
-                  Icons.label,
-                  color: context.colors.secondary,
+                Image.asset(
+                  icon,
+                  width: 20,
                 ),
                 SizedBox(
-                  width: 5,
+                  width: 10,
                 ),
                 Text(title,
                     style: TextStyle(
                         color: context.colors.secondary, fontSize: 16)),
               ],
+            ),
+            SizedBox(
+              height: 4,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,49 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tasarim_proje/core/widgets/locale_text.dart';
-import 'package:tasarim_proje/view/constants/image_path_svg.dart';
-
-import '../../core/init/lang/locale_keys.g.dart';
-import '../../core/services/firestore/status_service.dart';
-import '../myList/mylist_view_model.dart';
-import 'card.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../screens/detail/detail_view_model.dart';
 
 import '../../core/init/extensions/context_extension.dart';
 import '../../core/init/extensions/extensions.dart';
+import '../../core/init/lang/locale_keys.g.dart';
+import '../../core/services/firestore/database_service.dart';
+import '../../core/widgets/locale_text.dart';
+import 'card.dart';
 
-StatusService statusService = StatusService();
-MyListViewModel model = MyListViewModel();
-
-Icon iconSelect(String docs, BuildContext context) {
-  if (docs == "Listen") {
-    return Icon(
-      FontAwesomeIcons.headphones,
-      color: context.colors.primaryVariant,
-    );
-  } else if (docs == "Read") {
-    return Icon(
-      FontAwesomeIcons.book,
-      color: context.colors.primaryVariant,
-    );
-  } else {
-    return Icon(
-      FontAwesomeIcons.tv,
-      color: context.colors.primaryVariant,
-    );
-  }
-}
-
-openURL(String url) async {
-  if (await canLaunch(url)) {
-    print('opened link');
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
+DatabaseService statusService = DatabaseService();
+DetailViewModel model = DetailViewModel();
 
 // Function adjusting the Dismissible direction for different pages
 direction(String page) {
@@ -76,36 +44,42 @@ class ListData extends StatelessWidget {
           default:
             List<DocumentSnapshot> doc = snapshot.data.docs;
             return snapshot.hasData != null && doc.isNotEmpty
-                ? ListView(
-                    key: GlobalKey(),
-                    children: doc.map((DocumentSnapshot doc) {
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 25),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Dismissible(
-                              key: GlobalKey(),
-                              background: slideLeftBackground(context),
-                              secondaryBackground:
-                                  slideRightBackground(context),
-                              direction: direction(page),
-                              dismissThresholds: const {
-                                DismissDirection.endToStart: 0.2,
-                                DismissDirection.startToEnd: 0.2,
-                              },
-                              confirmDismiss: (direction) async {
-                                if (direction == DismissDirection.endToStart) {
-                                  return await alertDelete(context, doc);
-                                } else {
-                                  return await alertBackList(context, doc);
-                                }
-                              },
-                              child: buildbaseCard(doc, context)),
-                        ),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      );
-                    }).toList())
-                : Center(child: emptyList(context, page));
+                ? Expanded(
+                    flex: page == 'list' ? 9 : 4,
+                    child: ListView(
+                        key: GlobalKey(),
+                        children: doc.map((DocumentSnapshot doc) {
+                          return Container(
+                            margin: EdgeInsets.fromLTRB(15, 0, 15, 25),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Dismissible(
+                                  key: GlobalKey(),
+                                  background: slideLeftBackground(context),
+                                  secondaryBackground:
+                                      slideRightBackground(context),
+                                  direction: direction(page),
+                                  dismissThresholds: const {
+                                    DismissDirection.endToStart: 0.2,
+                                    DismissDirection.startToEnd: 0.2,
+                                  },
+                                  confirmDismiss: (direction) async {
+                                    if (direction ==
+                                        DismissDirection.endToStart) {
+                                      return await alertDelete(context, doc);
+                                    } else {
+                                      return await alertBackList(context, doc);
+                                    }
+                                  },
+                                  child: buildbaseCard(doc, context)),
+                            ),
+                            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                          );
+                        }).toList()),
+                  )
+                : Expanded(
+                    flex: page == 'list' ? 9 : 4,
+                    child: emptyList(context, page));
         }
       },
     );
@@ -113,26 +87,11 @@ class ListData extends StatelessWidget {
 
   BaseCard buildbaseCard(doc, BuildContext context) {
     return BaseCard(
-        icon: iconSelect(doc['type'], context),
-        title: new Text(
-          doc['title'] ?? 'null',
-          style: Theme.of(context).textTheme.headline1.copyWith(
-              fontWeight: FontWeight.w900,
-              color: context.colors.primaryVariant,
-              fontSize: 16),
-        ),
-        subtitle: new Text(
-          doc['url'] ?? 'null',
-          style: Theme.of(context)
-              .textTheme
-              .headline1
-              .copyWith(color: context.colors.primaryVariant, fontSize: 14),
-          overflow: TextOverflow.ellipsis,
-        ),
+        doc: doc['type'],
+        title: doc['title'] ?? 'null',
+        subtitle: doc['url'] ?? 'null',
         function: () {
-          if (page == 'list') {
-            alertOpenLink(context, doc);
-          }
+          alertOpenLink(context, doc);
         });
   }
 
@@ -170,7 +129,7 @@ class ListData extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(LocaleKeys.card_alertbacklist_title.locale),
+          //title: Text(LocaleKeys.card_alertbacklist_title.locale),
           content: Text(LocaleKeys.card_alertbacklist_subtitle.locale),
           actions: <Widget>[
             TextButton(
@@ -208,7 +167,7 @@ class ListData extends StatelessWidget {
                 child: Text(LocaleKeys.card_alertOpenLink_cancel.locale)),
             TextButton(
               onPressed: () {
-                openURL(doc['url']);
+                model.openURL(doc['url']);
                 Navigator.of(context).pop();
                 statusService.softDeleteLink(doc.id, true);
               },
@@ -245,39 +204,65 @@ class ListData extends StatelessWidget {
   }
 
   //----Empty list widget----
-  Widget emptyList(BuildContext context, String page) {
+  Column emptyList(BuildContext context, String page) {
     if (page == 'list') {
       return Column(
         children: [
-          Container(
-              margin: EdgeInsets.fromLTRB(0, 50, 0, 40),
-              child: Image.asset('assets/png/listEmpty.png')),
+          Image.asset(
+            'assets/png/listEmpty.png',
+            width: 250,
+          ),
           LocaleText(
             value: LocaleKeys.myList_emptyList_title,
-            style: TextStyle(color: context.colors.primary, fontSize: 30),
+            style: TextStyle(
+                color: context.colors.primary,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Nunito'),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
-          LocaleText(
-              value: LocaleKeys.myList_emptyList_subtitle,
-              style: TextStyle(color: context.colors.primary, fontSize: 20))
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: LocaleText(
+                value: LocaleKeys.myList_emptyList_subtitle,
+                style: TextStyle(
+                    color: context.colors.primary,
+                    fontSize: 20,
+                    fontFamily: 'Nunito')),
+          )
         ],
       );
     } else {
       return Column(
         children: [
-          SizedBox(
-            height: 30,
-          ),
           Image.asset(
             'assets/png/notFound.png',
-            height: 250,
-            width: 250,
+            height: 100,
+            width: 100,
           ),
           LocaleText(
-              value: LocaleKeys.myList_emptyList_subtitle,
-              style: TextStyle(color: context.colors.primary, fontSize: 20))
+            value: LocaleKeys.profile_empty_title,
+            style: TextStyle(
+                color: context.colors.primary,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Nunito'),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: LocaleText(
+                value: LocaleKeys.profile_empty_subtitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: context.colors.primary,
+                    fontSize: 16,
+                    fontFamily: 'Nunito')),
+          )
         ],
       );
     }

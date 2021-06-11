@@ -18,7 +18,4 @@ class ColorSchemeLight {
   final Color bg = Color(0xff141e30);
   final Color bottomSheetBg = Color(0xff242e40);
   final Color defaultCard = Color(0xff5ba19b);
-
-  final Color netflixColor = Color(0xffE50914);
-  final Color spotifyColor = Color(0xff1DB954);
 }

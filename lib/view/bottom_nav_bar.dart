@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../core/init/extensions/context_extension.dart';
 import '../core/init/extensions/extensions.dart';
 import '../core/init/lang/locale_keys.g.dart';
-import 'myList/mylist_view.dart';
-import 'profile/profile_view.dart';
-import 'timing/timing_view.dart';
+import 'screens/myList/mylist_view.dart';
+import 'screens/profile/profile_view.dart';
+import 'screens/timing/timing_view.dart';
 
 class BottomBar extends StatefulWidget {
   @override
