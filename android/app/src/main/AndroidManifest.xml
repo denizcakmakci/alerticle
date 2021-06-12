@@ -5,12 +5,12 @@
         android:icon="@mipmap/launcher_icon">
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_icon" 
+            android:resource="@mipmap/launcher_icon" 
               />
-            <meta-data
+            <!--<meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" 
-              />
+              /> -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

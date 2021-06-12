@@ -40,12 +40,14 @@ class ListData extends StatelessWidget {
         if (snapshot.hasError) return new Text('${snapshot.error}');
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return new Center(child: new CircularProgressIndicator());
+            return Align(
+                alignment: Alignment.center,
+                child: new CircularProgressIndicator());
           default:
             List<DocumentSnapshot> doc = snapshot.data.docs;
             return snapshot.hasData != null && doc.isNotEmpty
                 ? Expanded(
-                    flex: page == 'list' ? 9 : 4,
+                    flex: page == 'list' ? 9 : 5,
                     child: ListView(
                         key: GlobalKey(),
                         children: doc.map((DocumentSnapshot doc) {
@@ -210,7 +212,7 @@ class ListData extends StatelessWidget {
         children: [
           Image.asset(
             'assets/png/listEmpty.png',
-            width: 250,
+            width: context.height * 0.4,
           ),
           LocaleText(
             value: LocaleKeys.myList_emptyList_title,
@@ -239,8 +241,8 @@ class ListData extends StatelessWidget {
         children: [
           Image.asset(
             'assets/png/notFound.png',
-            height: 100,
-            width: 100,
+            height: context.height * 0.2,
+            width: context.height * 0.2,
           ),
           LocaleText(
             value: LocaleKeys.profile_empty_title,

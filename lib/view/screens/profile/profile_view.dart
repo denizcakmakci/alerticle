@@ -44,27 +44,7 @@ class ProfileView extends StatelessWidget {
   Column buildBody(ProfileViewModel viewModel, BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          flex: 6,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              buildGoogleInfo(viewModel, context),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.fromLTRB(30, 50, 0, 20),
-                  child: LocaleText(
-                    value: LocaleKeys.profile_history,
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: context.colors.primary),
-                  )),
-            ],
-          ),
-        ),
+        buildGoogleInfo(viewModel, context),
         ListData(
             function: statusService.getLinkWithQuery('deleted', true),
             page: 'profile')
@@ -72,36 +52,69 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Container buildGoogleInfo(ProfileViewModel viewModel, BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
+  Expanded buildGoogleInfo(ProfileViewModel viewModel, BuildContext context) {
+    return Expanded(
+      flex: 4,
       child: Column(
         children: [
-          SizedBox(height: 10),
-          CircleAvatar(
-            maxRadius: 50,
-            backgroundImage: NetworkImage(viewModel.user.photoURL),
-          ),
-          SizedBox(height: 10),
-          Text(
-            viewModel.user.displayName,
-            style: Theme.of(context).textTheme.headline1.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: context.colors.secondary,
-                ),
-          ),
           SizedBox(
-            height: 10,
+            height: context.mediumValue,
           ),
-          Text(
-            viewModel.user.email,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                .copyWith(color: context.colors.primary, fontSize: 16),
+          buildCircleAvatar(viewModel),
+          SizedBox(
+            height: context.normalValue,
           ),
+          buildDisplayname(viewModel, context),
+          SizedBox(
+            height: context.lowValue,
+          ),
+          buildEmail(viewModel, context),
+          SizedBox(
+            height: context.mediumValue,
+          ),
+          buildHistoryText(context),
         ],
       ),
+    );
+  }
+
+  Container buildHistoryText(BuildContext context) {
+    return Container(
+        alignment: Alignment.centerLeft,
+        margin: EdgeInsets.fromLTRB(30, context.normalValue, 0, 0),
+        child: LocaleText(
+          value: LocaleKeys.profile_history,
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: context.colors.primary),
+        ));
+  }
+
+  Text buildEmail(ProfileViewModel viewModel, BuildContext context) {
+    return Text(
+      viewModel.user.email,
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1
+          .copyWith(color: context.colors.primary, fontSize: 16),
+    );
+  }
+
+  Text buildDisplayname(ProfileViewModel viewModel, BuildContext context) {
+    return Text(
+      viewModel.user.displayName,
+      style: Theme.of(context).textTheme.headline1.copyWith(
+            fontWeight: FontWeight.bold,
+            color: context.colors.secondary,
+          ),
+    );
+  }
+
+  CircleAvatar buildCircleAvatar(ProfileViewModel viewModel) {
+    return CircleAvatar(
+      maxRadius: 50,
+      backgroundImage: NetworkImage(viewModel.user.photoURL),
     );
   }
 }

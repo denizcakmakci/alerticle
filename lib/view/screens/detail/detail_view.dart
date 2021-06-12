@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tasarim_proje/core/device/constants.dart';
 import '../../../core/base/base_view.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
 import '../../../core/widgets/locale_text.dart';
@@ -16,28 +17,31 @@ class DetailView extends StatelessWidget with IconColor {
   @override
   Widget build(BuildContext context) {
     return BaseView<DetailViewModel>(
-      viewModel: DetailViewModel(),
-      onModelReady: (model) {
-        model.setContext(context);
-        model.init();
-      },
-      onPageBuilder: (BuildContext context, DetailViewModel viewModel) =>
-          Scaffold(
-        appBar: BaseAppBar(
-          widget: IconButton(
-            icon: Icon(FontAwesomeIcons.arrowLeft),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            splashColor: Colors.transparent,
-          ),
-          title: LocaleKeys.detail_title,
-        ),
-        body: Observer(builder: (_) {
-          return buildBody(viewModel, context);
-        }),
-      ),
-    );
+        viewModel: DetailViewModel(),
+        onModelReady: (model) {
+          model.setContext(context);
+          model.init();
+        },
+        onPageBuilder: (BuildContext context, DetailViewModel viewModel) =>
+            WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                appBar: BaseAppBar(
+                  widget: IconButton(
+                    icon: Icon(FontAwesomeIcons.arrowLeft),
+                    onPressed: () {
+                      viewModel.navigation
+                          .navigateToPageClear(path: NavigationConstants.HOME);
+                    },
+                    splashColor: Colors.transparent,
+                  ),
+                  title: LocaleKeys.detail_title,
+                ),
+                body: Observer(builder: (_) {
+                  return buildBody(viewModel, context);
+                }),
+              ),
+            ));
   }
 
   Column buildBody(DetailViewModel viewModel, BuildContext context) {
@@ -59,6 +63,9 @@ class DetailView extends StatelessWidget with IconColor {
                   ),
                 ),
         ),
+        SizedBox(
+          height: context.height * 0.05,
+        ),
         AnimatedOpacity(
           opacity: viewModel.visible ? 1.0 : 0.0,
           duration: Duration(seconds: 1),
@@ -78,12 +85,15 @@ class DetailView extends StatelessWidget with IconColor {
             children: [
               buildTitle(viewModel, context),
               SizedBox(
-                height: 40,
+                height: context.mediumValue,
               ),
               buildSubtitle(viewModel),
+              SizedBox(
+                height: context.mediumValue,
+              ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(40, 80, 40, 0),
-                child: buildButtons(viewModel),
+                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                child: buildButtons(viewModel, context),
               )
             ],
           )
@@ -113,7 +123,7 @@ class DetailView extends StatelessWidget with IconColor {
             fontSize: 20,
           ),
           overflow: TextOverflow.ellipsis,
-          maxLines: 3,
+          maxLines: 4,
         ));
   }
 
@@ -133,7 +143,7 @@ class DetailView extends StatelessWidget with IconColor {
                   fontSize: 24,
                   fontWeight: FontWeight.w900),
               overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+              maxLines: 2,
             ),
             SizedBox(
               height: 15,
@@ -153,7 +163,7 @@ class DetailView extends StatelessWidget with IconColor {
         ));
   }
 
-  Row buildButtons(DetailViewModel viewModel) {
+  Row buildButtons(DetailViewModel viewModel, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -168,7 +178,7 @@ class DetailView extends StatelessWidget with IconColor {
           },
         ),
         SizedBox(
-          width: 50,
+          width: context.highValue,
         ),
         AppButton(
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
