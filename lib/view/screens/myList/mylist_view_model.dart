@@ -22,7 +22,7 @@ abstract class _MyListViewModelBase with Store, BaseViewModel {
   String typeValue;
   double pi = 3.1415926535897932;
   final formKey = GlobalKey<FormState>();
-  Response title;
+  Response info;
   TextEditingController urlController = TextEditingController();
   DatabaseService statusService = DatabaseService();
 
@@ -39,9 +39,9 @@ abstract class _MyListViewModelBase with Store, BaseViewModel {
   }
 
   getTitle() async {
-    title = await http.get(Uri.parse(
+    info = await http.get(Uri.parse(
         'https://us-central1-flutterproject-347f0.cloudfunctions.net/getMeta?url=${urlController.text}'));
-    return title;
+    return info;
   }
 
   Future<void> addFire() async {
@@ -49,9 +49,9 @@ abstract class _MyListViewModelBase with Store, BaseViewModel {
     statusService
         .addLink(
           typeValue == null ? "Listen" : typeValue,
-          jsonDecode(title.body)['title'],
+          jsonDecode(info.body)['title'],
           urlController.text,
-          jsonDecode(title.body)['description'],
+          jsonDecode(info.body)['description'],
         )
         .then((value) => Navigator.pop(context));
     typeValue = null;

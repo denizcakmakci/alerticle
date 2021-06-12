@@ -30,7 +30,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
         if (localeManager.getBoolValue(PreferencesKeys.IS_FIRST_APP) == false) {
           navigation.navigateToPageClear(path: NavigationConstants.ONBOARD);
         } else {
-          navigation.navigateToPageClear(path: NavigationConstants.HOME);
+          firebaseMessagingHandler();
         }
       }
     } on SocketException catch (_) {
@@ -39,30 +39,28 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     }
   }
 
+  navigate(RemoteMessage message) {
+    Navigator.of(NavigationService.instance.navigatorKey.currentContext)
+        .push(MaterialPageRoute(
+            builder: (context) => DetailView(),
+            settings: RouteSettings(
+              arguments: {'type': message.data['type']},
+            )));
+  }
+
   //Cloud messaging configure
   Future<void> firebaseMessagingHandler() async {
     await Firebase.initializeApp();
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage message) {
-      if (message != null) {
-        Navigator.of(NavigationService.instance.navigatorKey.currentContext)
-            .push(MaterialPageRoute(
-                builder: (context) => DetailView(),
-                settings: RouteSettings(
-                  arguments: {'type': message.data['type']},
-                )));
-      }
-
-      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        print('A new onMessageOpenedApp event was published!');
-        Navigator.of(NavigationService.instance.navigatorKey.currentContext)
-            .push(MaterialPageRoute(
-                builder: (context) => DetailView(),
-                settings: RouteSettings(
-                  arguments: {'type': message.data['type']},
-                )));
-      });
+    RemoteMessage initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      navigate(initialMessage);
+    } else {
+      navigation.navigateToPageClear(path: NavigationConstants.HOME);
+    }
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      navigate(initialMessage);
     });
   }
 
@@ -71,6 +69,5 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     await Future.delayed(context.normalDuration, () async {
       checkInternet();
     });
-    firebaseMessagingHandler();
   }
 }
