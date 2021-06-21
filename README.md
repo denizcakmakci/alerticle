@@ -1,5 +1,7 @@
 # Alerticle 
+<p align="center">
 <img src="https://drive.google.com/uc?export=view&id=1h23eImVTnqtBSx2dUKcNvYwUqLHWnp-x" width="150">
+</p>
 
 Kullanıcıların daha sonra gerçekleştirmek için aktivite kaydedebildikleri ve ardından istenilen zamanda bu aktiviteler içerisinden rastgele bir içeriğe yönlendirildikleri bir mobil uygulama projesidir. Ayrıca belli bir düzenle aktivitelerini gerçekleştirmek isteyen kullanıcılar alarm kurup belirledikleri zamanlarda bildirim alarakta rastgele içeriklere yönlendirilebilirler.
 Projede Flutter ve Firebase kullanılmıştır.
