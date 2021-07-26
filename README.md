@@ -4,7 +4,9 @@
 </p>
 
 Kullanıcıların daha sonra gerçekleştirmek için aktivite kaydedebildikleri ve ardından istenilen zamanda bu aktiviteler içerisinden rastgele bir içeriğe yönlendirildikleri bir mobil uygulama projesidir. Ayrıca belli bir düzenle aktivitelerini gerçekleştirmek isteyen kullanıcılar alarm kurup belirledikleri zamanlarda bildirim alarakta rastgele içeriklere yönlendirilebilirler.
-Projede Flutter ve Firebase kullanılmıştır.
+
+
+Projede Flutter ve Firebase kullanılmıştır. Uygulama Türkçe ve ingilizce olmak üzere 2 dil seçeneğine sahiptir.
 ## OnBoarding Sayfaları
 Uygulamanın ilk açılışında kullanıcıyı uygulamadan nasıl yararlanacağı konusunda bilgilendiren sayfalardır. Sonunda kullanıcı Google ile girişe yönlendirilir.
 <p align="center">
